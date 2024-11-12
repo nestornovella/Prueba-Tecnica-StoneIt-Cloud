@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { response, throwError } from "../helpers/responseHandlers";
 import { statusCode } from "../helpers/statusCode";
-
 import { compare } from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { prisma } from "../helpers/prismaSingelton";

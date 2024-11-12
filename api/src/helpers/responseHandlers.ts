@@ -3,10 +3,18 @@ import { returnRes } from "./capturRes";
 
 
 export function response(status=202, data){
-    returnRes().status(status).json({
-        status,
-        data
-    })
+
+    if(typeof data == 'string'){
+        returnRes().status(status).json({
+            status,
+            message: data
+        })
+    }else{
+        returnRes().status(status).json({
+            status,
+            data
+        })
+    }
 }
 
 

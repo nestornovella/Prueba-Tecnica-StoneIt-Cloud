@@ -27,7 +27,7 @@ model Task {
   title       String
   description String
   deadline    DateTime     
-  status      String
+  status      String? @default("pendiente")// pendiente, enProgreso, completado
   userId String
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   tag Tag[] @relation("task-tag") 
