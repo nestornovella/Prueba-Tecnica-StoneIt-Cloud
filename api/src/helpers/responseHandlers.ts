@@ -2,10 +2,10 @@ import { returnRes } from "./capturRes";
 
 
 
-export function response(status=202, message='success'){
-    return returnRes().status(status).json({
+export function response(status=202, data){
+    returnRes().status(status).json({
         status,
-        message
+        data
     })
 }
 

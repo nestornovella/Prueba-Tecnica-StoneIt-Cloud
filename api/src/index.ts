@@ -1,7 +1,7 @@
 import express,{ NextFunction, Request, Response } from "express"
 import cors from "cors"
 import morgan from 'morgan'
-import router from './routes/index'
+import router from './routes/index.routes'
 import { captureRes } from "./helpers/capturRes"
 export interface Error{
     message: string,
@@ -14,7 +14,9 @@ const app = express()
 
 //err, req, res, next
 app.use(express.json())
-app.use(cors())
+app.use(cors({
+    allowedHeaders: ['Authorization', 'Content-Type'],
+  }))
 app.use(morgan('dev'))
 app.use(captureRes)
 app.use('/', router)

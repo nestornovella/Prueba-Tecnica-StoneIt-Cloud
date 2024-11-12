@@ -16,7 +16,7 @@ datasource db {
 
 model User{
   id String @id @default(uuid()) 
-  name String
+  username String @unique
   password String
   task Task[] 
 }
@@ -29,14 +29,13 @@ model Task {
   deadline    DateTime     
   status      String
   userId String
-  user User @relation(fields: [userId], references: [id])
-  tag Tag[] @relation("task-tag")
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tag Tag[] @relation("task-tag") 
 }
 
 
 model Tag{
   id String @id @default(uuid()) 
   name String
-  password String 
   task Task[] @relation("task-tag")
 }

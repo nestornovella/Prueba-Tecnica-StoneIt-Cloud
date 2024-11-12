@@ -19,4 +19,6 @@ export const statusCode = {
     noImplementado: 501,
     servicioNoDisponible: 503,
     versionHTTPNoSoportada: 505,
+    demaciadasPeticiones: 429,
+    continue: 100, 
 };
