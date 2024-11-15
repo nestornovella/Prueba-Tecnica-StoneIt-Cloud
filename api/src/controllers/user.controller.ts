@@ -3,7 +3,10 @@ import { response, throwError } from "../helpers/responseHandlers";
 import { statusCode } from "../helpers/statusCode";
 import { hash } from 'bcrypt'
 import { prisma } from "../helpers/prismaSingelton";
+import jwt from 'jsonwebtoken'
 
+
+const secretKey = process.env.SECRET_KEY_JWT || 'clave-secreta-1wxcwasd234';
 
 
 export async function getAllUsers(req: Request, res: Response, next: NextFunction) {
@@ -28,10 +31,11 @@ export async function userRegister(req: Request, res: Response, next: NextFuncti
                 password: await hash(password, 10)
             }
         })
+        const token = jwt.sign({ id: newUser.id, username: newUser.username }, secretKey, { expiresIn: '1d' })
 
         if (!newUser) throwError(statusCode.errorServidor, 'usuario no creado')
 
-        response(statusCode.creado, newUser)
+        response(statusCode.creado, {user:newUser, token})
 
     } catch (error) {
         next(error)

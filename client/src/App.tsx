@@ -1,35 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect } from "react";
+import Container from "@mui/material/Container";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import Navbar from "./components/navbar/NavBar";
+import TasksRender from "./components/tasks/Tasks";
+import SearchBar from "./components/searchBar/SearchBar";
+import SideBar from "./components/sidebar/SideBar";
+import SidebarButton from "./components/sidebar/SidebarButton";
 
 function App() {
-  const [count, setCount] = useState(0)
-
+ 
   return (
-    <>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <SideBar />
+        <SidebarButton />
+        <Navbar />
+        <Container maxWidth="lg" sx={{ paddingTop: { xs: 10, md: 15 } }}>
+          <SearchBar />
+          <TasksRender />
+        </Container>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </LocalizationProvider>
+  );
 }
 
-export default App
+export default App;
