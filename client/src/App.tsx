@@ -1,17 +1,23 @@
+import 'react-toastify/dist/ReactToastify.css';
 import { useEffect } from "react";
 import Container from "@mui/material/Container";
-import { LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import Navbar from "./components/navbar/NavBar";
 import TasksRender from "./components/tasks/Tasks";
 import SearchBar from "./components/searchBar/SearchBar";
 import SideBar from "./components/sidebar/SideBar";
 import SidebarButton from "./components/sidebar/SidebarButton";
+import { useUserStore } from "./store/userStore";
+import { ToastContainer } from 'react-toastify';
 
 function App() {
+
+  const {authUser}= useUserStore()
+  useEffect(()=>{
+    authUser()
+  },[])
  
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
+    
       <div>
         <SideBar />
         <SidebarButton />
@@ -20,8 +26,9 @@ function App() {
           <SearchBar />
           <TasksRender />
         </Container>
+        <ToastContainer/>
       </div>
-    </LocalizationProvider>
+   
   );
 }
 

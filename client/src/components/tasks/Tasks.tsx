@@ -1,6 +1,9 @@
 import { styled } from '@mui/material/styles';
 import { Grid, Paper } from "@mui/material";
 import TaskCard from './TaskCard';
+import { useTaskStore } from '../../store/taskStore';
+import { useEffect } from 'react';
+import { useUserStore } from '../../store/userStore';
 
 
 // const Item = styled(Paper)(({ theme }) => ({
@@ -16,13 +19,13 @@ import TaskCard from './TaskCard';
 //sx estilos en linea
 //xs, md, xl
 
-const Item = styled(Paper)(({theme})=>({
-    backgroundColor:'#111010',
+const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: '#111010',
     ...theme.typography.h3,
     padding: theme.spacing(3),
-    borderRadius:10,
+    borderRadius: 10,
     color: 'white',
-    height:'0px',
+    height: '0px',
 }))
 
 const items = [
@@ -46,23 +49,31 @@ const items = [
     { title: "Bases de Datos NoSQL", description: "Explora las bases de datos NoSQL como MongoDB y cuándo usarlas en lugar de bases de datos SQL." },
     { title: "Inteligencia Artificial Básica", description: "Introducción a conceptos de inteligencia artificial y algoritmos de IA como redes neuronales." },
     { title: "Fundamentos de TypeScript", description: "Conoce las ventajas de TypeScript sobre JavaScript y cómo agregar tipos estáticos a tu código." }
-  ];
-  
+];
+
 
 
 function TasksRender() {
+    const { token } = useUserStore()
+    const { gettasks, tasks } = useTaskStore()
+
+    useEffect(() => {
+        gettasks(token)
+    }, [token])
+
+
     return (
-        <Grid container margin={20} spacing={{xs:3, md:2}}> 
-                {
-                    items.map(e =>{
-                        return (
-                            <Grid item xs={12} md={4} xl={4} >
-                               <TaskCard title={e.title} description={e.description}/>
-                            </Grid>
-                        )
-                    })
-                }
-            
+        <Grid container margin={20} spacing={{ xs: 3, md: 2 }}>
+            {
+                tasks?.map(e => {
+                    return (
+                        <Grid key={e.id} item xs={12} md={4} xl={4} >
+                            <TaskCard deadline={e.deadline} id={e.id} title={e.title} description={e.description} status={e.status} />
+                        </Grid>
+                    )
+                })
+            }
+
         </Grid>
     );
 }

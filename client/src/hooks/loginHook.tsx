@@ -5,14 +5,14 @@ import { useUserStore } from "../store/userStore";
 
 function useLoginHook() {
 
-    const {loginUser, authUser, loading} = useUserStore()
+    const { loginUser, authUser, loading } = useUserStore()
 
     const [input, setInput] = useState({
         username: '',
         password: ''
     })
 
-   
+
     function handleInput(e: React.ChangeEvent<HTMLInputElement>) {
         setInput(prev => ({
             ...prev,
@@ -20,16 +20,16 @@ function useLoginHook() {
         }));
     }
 
-    async function submit(e:React.MouseEvent<HTMLButtonElement>){
+    async function submit(e: React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault()
         const response = await loginUser(input)
-        if(!response.response){
+        if (!response.response) {
             authUser(response.data.message)
             return response
-          }else{
+        } else {
             return response
-          }
-        
+        }
+
     }
 
 

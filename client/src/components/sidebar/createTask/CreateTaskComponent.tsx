@@ -5,15 +5,15 @@ import SimpleDatePicker from "./DatePicker";
 
 
 function CreateTask() {
-    const { handleinput, input, submit} = useTaskCreateHook()
+    const { handleinput, input, submit } = useTaskCreateHook()
 
     return (
         <Grid component={'div'} padding={5} border={1} container spacing={0}>
-           <Typography fontFamily={"monospace"} color="white">Crear tarea</Typography>
+            <Typography fontFamily={"monospace"} color="white">Crear tarea</Typography>
             <Grid item xs={12} md={12} xl={12}>
                 <Box>
                     <TextField
-                        label="Contraseña"
+                        label="Titulo"
                         type="text"
                         name="title"
                         value={input.title}
@@ -70,9 +70,9 @@ function CreateTask() {
                         }}
                     />
                 </Box>
-                <SimpleDatePicker handleInput={handleinput}/>
-                <Button sx={{marginTop:2}} variant="contained" fullWidth color="primary">
-                  Crear Tarea
+                <SimpleDatePicker handleInput={handleinput} />
+                <Button onClick={submit} sx={{ marginTop: 2 }} variant="contained" fullWidth color="primary">
+                    Crear Tarea
                 </Button>
             </Grid>
         </Grid>

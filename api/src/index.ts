@@ -16,7 +16,7 @@ const app = express()
 app.use(express.json())
 app.use(cors({
     allowedHeaders: ['Authorization', 'Content-Type'],
-  }))
+}))
 app.use(morgan('dev'))
 app.use(captureRes)
 app.use('/', router)

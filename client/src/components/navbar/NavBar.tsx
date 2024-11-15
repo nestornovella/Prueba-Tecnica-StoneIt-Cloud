@@ -15,6 +15,8 @@ import AdbIcon from '@mui/icons-material/Adb';
 import LoginModal from '../login/LoginModal';
 import useToogle from '../../hooks/toogleHook';
 import { useUserStore } from '../../store/userStore';
+import { useTaskStore } from '../../store/taskStore';
+import { Link } from '@mui/material';
 
 
 const pages: string[] = [];
@@ -22,7 +24,8 @@ const settings = [ 'Logout'];
 
 function NavBar() {
 
-  const { user } = useUserStore()
+  const { user, logOut } = useUserStore()
+  const {logOutTask} = useTaskStore()
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
   const { isOpen, open, close } = useToogle()
@@ -40,6 +43,11 @@ function NavBar() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+  const handlelogOut = () => {
+    logOut()
+    logOutTask()
+    
   };
 
   return (
@@ -161,8 +169,8 @@ function NavBar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography sx={{ textAlign: 'center' }}>{setting}</Typography>
+                <MenuItem  key={setting} onClick={handleCloseUserMenu}>
+                  <Button onClick={handlelogOut} sx={{ textAlign: 'center' }}>{setting}</Button>
                 </MenuItem>
               ))}
             </Menu>

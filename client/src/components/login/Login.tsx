@@ -1,6 +1,7 @@
 import { Box, Button, TextField, Typography, Link } from "@mui/material";
 import useLoginHook from "../../hooks/loginHook";
 import { useState } from "react";
+import { toast ,Bounce, Flip} from "react-toastify";
 
 interface Props {
   handleRegister: () => void;
@@ -12,9 +13,20 @@ function Login({ handleRegister, close }: Props) {
   const [error, setError] = useState(null)
 
   async function handleSubmit(e:React.MouseEvent<HTMLButtonElement>){
- 
+
       const response = await submit(e)
       if(!response.response){
+        toast.success('🦄 Wow so easy!', {
+          position: "bottom-right",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          transition: Flip,
+          });
         close()
       }else{
         setError(response.response.data.message)

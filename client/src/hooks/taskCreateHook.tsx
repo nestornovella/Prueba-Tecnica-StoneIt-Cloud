@@ -2,18 +2,21 @@ import { useState } from "react";
 import { ChangeEventInput, MouseEventButton } from "../interfaces/eventInterfaces";
 import axios from "axios";
 import { useUserStore } from "../store/userStore";
+import { useTaskStore } from "../store/taskStore";
 
 
 
 function useTaskCreateHook() {
+    const { token, user } = useUserStore()
+    const { gettasks } = useTaskStore()
     const [input, setInput] = useState({
         title: '',
         description: '',
-        deadline: ''
+        deadline: new Date()
     })
-    const {token} = useUserStore()
 
-    console.log(token)
+
+    console.log(input, user)
 
     function handleinput(e: ChangeEventInput) {
         const [year, month, day] = e.target.value.split("-").map(Number);
@@ -23,7 +26,7 @@ function useTaskCreateHook() {
                 ...prev,
                 [e.target.name]: date
             }))
-        }else{
+        } else {
             setInput(prev => ({
                 ...prev,
                 [e.target.name]: e.target.value
@@ -32,13 +35,22 @@ function useTaskCreateHook() {
     }
 
 
-    async function  submit(e: MouseEventButton) {
+    async function submit(e: MouseEventButton) {
         e.preventDefault()
-        const response = await axios.post(import.meta.env.VITE_TASK_URL,input, {
-            headers:{
-                Authorization:token
+        const response = await axios.post(import.meta.env.VITE_TASK_URL, input, {
+            headers: {
+                Authorization: token
             }
         })
+        if (response.data) {
+            gettasks(token)
+        }
+        setInput({
+            title: '',
+            description: '',
+            deadline: new Date()
+        })
+        console.log(response)
     }
 
 

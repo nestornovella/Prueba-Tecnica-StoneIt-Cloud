@@ -9,6 +9,7 @@ interface UserInterface {
     token: null | string,
     getPersistentUser:()=> string | null
     loginUser: (user: User) => Promise<any>;
+    logOut:()=> void
     authUser: (token?:string | null)=>Promise<void>
   }
   
@@ -43,6 +44,10 @@ export const useUserStore = create<UserInterface>()(
             return error
         }
     }, 
+    logOut: async ()=>{
+            set(()=> ({token: null, user:null}))
+        
+    }, 
     authUser: async (token)=>{
         try {
             
@@ -53,8 +58,6 @@ export const useUserStore = create<UserInterface>()(
                     Authorization: tk 
                 }  
             })
-            console.log(user)
-
             set(()=>{
                 return {user:user.data.data}
             })
@@ -66,7 +69,7 @@ export const useUserStore = create<UserInterface>()(
         return get().token; // Obtener el valor de 'user' persistido
       },
 }),{
-    name:'nombre-asignado',
+    name:'localState',
     partialize: (store)=> ({token:store.token}),
 
 })

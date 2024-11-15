@@ -12,15 +12,17 @@ import CardFooter from './CardFooter';
 interface TaskProps{
     title:string
     description: string
+    deadline: Date
+    id: string
+    status:string
 }
 
-function TaskCard({title, description}:TaskProps) {
+function TaskCard({title, description, deadline, id, status}:TaskProps) {
 
     const url = 'https://e0.pxfuel.com/wallpapers/818/953/desktop-wallpaper-dark-gradient-pattern-circles-texture.jpg'
     return (
         <Box component={'div'}  justifyContent={'center'}  display={'flex'}>
             <Card
-           
                 className={Styles.card}
                 sx={{
                     width: 600,
@@ -54,7 +56,7 @@ function TaskCard({title, description}:TaskProps) {
 
                     {/* <Typography width={"100%"} variant="h4" justifyContent={'center'} color='white'>Pendiente</Typography> */}
                 </CardMedia>
-                    <CardSelect />
+                    <CardSelect id={id} status={status}/>
                 <CardContent sx={{ maxHeight: { xs: 140 }, overflow: 'hidden' }}>
                     <Typography gutterBottom color='info' variant="button" component="div">
                         {title}
@@ -62,12 +64,10 @@ function TaskCard({title, description}:TaskProps) {
                     <Typography variant="body2" color="">
                         {description}
                     </Typography>
-
                     {/* componente botones */}
                 </CardContent>
                     {/* componente botones */}
-
-                <CardFooter />
+                <CardFooter id={id}/>
             </Card>
         </Box>
 

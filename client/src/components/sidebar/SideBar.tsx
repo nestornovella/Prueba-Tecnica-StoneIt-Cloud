@@ -2,20 +2,22 @@ import { Box, IconButton } from "@mui/material";
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import Styles from './sideBar.module.css'
 import { useStoreSideBar } from "../../store/store";
-import { useState } from "react";
+import React, { useState } from "react";
 import CreateTask from "./createTask/CreateTaskComponent";
 import Filtertask from "./FilterTask";
+import HandleUtilities from "./handleUtilities";
 //'#080808'
 
 function SideBar() {
 
     const { statusOpen, toogleOpen, isMounted, toogleMonted } = useStoreSideBar()
     const nameOfStates = {
-        proceso:'proceso',
-        pendiente:'pendiente',
-        completada:'completada'
+        proceso: 'proceso',
+        pendiente: 'pendiente',
+        completada: 'completada'
     }
     const [selected, setSelected] = useState(nameOfStates.proceso)
+    const [section, setSection] = useState('create')
 
 
     function handleOpen() {
@@ -23,9 +25,19 @@ function SideBar() {
         toogleOpen()
     }
 
-    function handleButton(e:React.MouseEvent<HTMLButtonElement>) {
+    function handleButton(e: React.MouseEvent<HTMLButtonElement>) {
         const target = e.target as HTMLButtonElement;
         setSelected(target.name)
+    }
+
+    function handleSection(sect: string) {
+        setSection(sect)
+        
+    }
+
+    const sectionsComponents:Record<string, React.ReactElement> = {
+        crear: <CreateTask />,
+        filtrar: <Filtertask handleButton={handleButton} selected={selected} nameOfStates={nameOfStates} />
     }
 
     return (
@@ -42,9 +54,11 @@ function SideBar() {
                 <IconButton onClick={handleOpen} aria-label="" sx={{ backgroundColor: 'black' }}  >
                     <ArrowCircleLeftIcon sx={{ transform: "rotate(180deg)", color: 'white', fontSize: '50px' }} />
                 </IconButton>
-                <CreateTask/>
-                <Filtertask handleButton={handleButton} selected={selected} nameOfStates={nameOfStates}/>
-                
+
+                <HandleUtilities handleSection={handleSection} />
+                {
+                    sectionsComponents[section]
+                }
             </Box>
         </Box>
     );
