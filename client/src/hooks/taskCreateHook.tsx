@@ -15,9 +15,6 @@ function useTaskCreateHook() {
         deadline: new Date()
     })
 
-
-    console.log(input, user)
-
     function handleinput(e: ChangeEventInput) {
         const [year, month, day] = e.target.value.split("-").map(Number);
         const date = new Date(Date.UTC(year, month - 1, day + 1));
@@ -34,7 +31,6 @@ function useTaskCreateHook() {
         }
     }
 
-
     async function submit(e: MouseEventButton) {
         e.preventDefault()
         const response = await axios.post(import.meta.env.VITE_TASK_URL, input, {
@@ -50,7 +46,6 @@ function useTaskCreateHook() {
             description: '',
             deadline: new Date()
         })
-        console.log(response)
     }
 
 

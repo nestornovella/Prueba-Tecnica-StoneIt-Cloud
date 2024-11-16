@@ -17,7 +17,6 @@ function CardSelect({id, status}:Props) {
     function handleChange(e: SelectChangeEvent) {
         setSelected(e.target.value)
         updateTaskStatus(id, token, e.target.value)
-        console.log(e.target.value)
     }
 
     return (

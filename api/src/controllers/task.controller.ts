@@ -12,9 +12,8 @@ const statusOptions = {
 }
 
 export async function getTasks(req: Request, res: Response, next: NewableFunction) {
-    const { authorization } = req.headers
-    const {status, tag, search} = req.query
-    console.log(status, tag)
+    const { authorization } = req.headers;
+    const {status, tag, search} = req.query;
     try {
         const userAuth: JwtPayload | string = verify(authorization, secretKey)
         if (typeof userAuth == 'string') throwError(statusCode.noAutorizado, 'token no valido')

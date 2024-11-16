@@ -9,8 +9,8 @@ import { prisma } from "../helpers/prismaSingelton";
 const secretKey = process.env.SECRET_KEY_JWT || 'clave-secreta-1wxcwasd234';
 
 export async function generateToken(req: Request, res: Response, next: NextFunction) {
-    const { username, password } = req.body
     try {
+        const { username, password } = req.body
         if (!username || !password) throwError(statusCode.badRequest, 'invalid params')
         const user = await prisma.user.findUnique({
             where: {
@@ -28,8 +28,7 @@ export async function generateToken(req: Request, res: Response, next: NextFunct
 
 
 export async function authUser(req: Request, res: Response, next: NextFunction) {
-    const { authorization } = req.headers
-    console.log(req.headers)
+    const { authorization } = req.headers;
     try {
         const {id, username}:any = jwt.verify(authorization, secretKey)
         response(statusCode.aceptado, {id, username})

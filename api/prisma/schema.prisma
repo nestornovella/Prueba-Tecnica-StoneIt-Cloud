@@ -19,6 +19,7 @@ model User{
   username String @unique
   password String
   tasks Task[] 
+  wallpapers Wallpapers?
 }
 
 
@@ -38,4 +39,12 @@ model Tag{
   id String @id @default(uuid()) 
   name String
   tasks Task[] @relation("task-tag")
+}
+
+
+model Wallpapers {
+  id   String   @id @default(uuid())
+  wallpaper   String
+  userId String @unique
+  user User @relation(fields: [userId], references: [id])
 }

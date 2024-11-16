@@ -19,13 +19,11 @@ function Register({ handleToggle, close }: Props) {
       const response = await submit(e)
       authUser(response.data.data.token)
       close()
-      console.log(response)
     } catch (error:any) {
       setError(error.response.data.message)
       
     }
   }
-  console.log(error)
 
   return (
     <div>

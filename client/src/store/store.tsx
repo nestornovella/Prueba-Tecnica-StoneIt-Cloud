@@ -57,7 +57,7 @@ export const useStoreTask = create<TaskState>(set =>({
             })
             
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     }
 }))

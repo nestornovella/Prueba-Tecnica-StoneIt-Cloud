@@ -7,7 +7,13 @@ import { statusCode } from '../src/helpers/statusCode';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-jest.mock('../src/helpers/prismaSingelton');
+jest.mock('../src/helpers/prismaSingelton', () => ({
+  prisma: {
+    user: {
+      findUnique: jest.fn(),
+    },
+  },
+}));
 jest.mock('../src/helpers/responseHandlers');
 jest.mock('bcrypt');
 jest.mock('jsonwebtoken');

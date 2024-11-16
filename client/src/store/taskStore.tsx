@@ -34,7 +34,6 @@ export const useTaskStore = create<TaskInterface>((set) => ({
         try {
 
             if (!token) throw new Error('Debes iniciar sesion')
-            console.log(token)
             const response = await axios.get(import.meta.env.VITE_TASK_URL, { headers: { Authorization: token } })
             if (response.data.status < 300) {
                 set(() => ({ tasks: response.data.data }))
@@ -42,7 +41,7 @@ export const useTaskStore = create<TaskInterface>((set) => ({
             return 200
 
         } catch (error: any) {
-            console.log(error)
+            console.error(error)
 
         }
     },
@@ -89,7 +88,6 @@ export const useTaskStore = create<TaskInterface>((set) => ({
 
     updateTaskStatus: async (id, token, status) => {
         try {
-            console.log(status)
             if (!id || !token || !status) throw new Error('faltan parametros o son invalidos')
             await axios.put(import.meta.env.VITE_TASK_URL + id, { status: status }, { headers: { Authorization: token } })
             const response = await axios.get(import.meta.env.VITE_TASK_URL, { headers: { Authorization: token } })
