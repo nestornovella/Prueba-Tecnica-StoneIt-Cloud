@@ -11,8 +11,8 @@ interface UserInterface {
     loginUser: (user: User) => Promise<any>;
     logOut:()=> void
     authUser: (token?:string | null)=>Promise<void>
-  }
-  
+}
+
 
 const URLS = {
     userPath: import.meta.env.VITE_USER_URL,

@@ -2,6 +2,7 @@ import { CardActions, MenuItem, Select, SelectChangeEvent } from "@mui/material"
 import { useState } from "react";
 import { useTaskStore } from "../../store/taskStore";
 import { useUserStore } from "../../store/userStore";
+import { blue } from "@mui/material/colors";
 
 interface Props{
     status:string
@@ -27,7 +28,8 @@ function CardSelect({id, status}:Props) {
                 right: 0,
                 width: '100%',
                 display: 'flex',
-                justifyContent: 'end'
+                justifyContent: 'end',
+                backdropFilter:"blur(5px)"
             }}
         >
             <Select
@@ -38,7 +40,8 @@ function CardSelect({id, status}:Props) {
                 value={selected}
                 label="Age"
                 sx={{
-                    color: selected == 'pendiente' ? 'yellow' : selected == 'completada' ? 'green' : 'orange' ,
+                    
+                    color: selected == 'pendiente' ? '#f0de14' : selected == 'completada' ? '#0d950d' : '#ef9207' ,
                     '& .MuiOutlinedInput-notchedOutline': {
                         borderColor: 'black',
                         border: 2
@@ -47,8 +50,9 @@ function CardSelect({id, status}:Props) {
                         borderColor: 'white',
                     },
                     '& .MuiSelect-icon': {
-                        color: '#3958f1',
+                        color:selected == 'pendiente' ? '#f0de14' : selected == 'completada' ? '#0d950d' : '#ef9207',
                     },
+                    backgroundColor:selected == 'pendiente' ? '#968b085f' : selected == 'completada' ? '#113c117a' : '#ef92076e',
                     height: '30px'
                 }}
             >

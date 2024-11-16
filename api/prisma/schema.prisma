@@ -18,7 +18,7 @@ model User{
   id String @id @default(uuid()) 
   username String @unique
   password String
-  task Task[] 
+  tasks Task[] 
 }
 
 
@@ -30,12 +30,12 @@ model Task {
   status      String? @default("pendiente")// pendiente, enProgreso, completado
   userId String
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  tag Tag[] @relation("task-tag") 
+  tags Tag[] @relation("task-tag") 
 }
 
 
 model Tag{
   id String @id @default(uuid()) 
   name String
-  task Task[] @relation("task-tag")
+  tasks Task[] @relation("task-tag")
 }

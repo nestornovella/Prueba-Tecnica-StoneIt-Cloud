@@ -11,13 +11,8 @@ import HandleUtilities from "./handleUtilities";
 function SideBar() {
 
     const { statusOpen, toogleOpen, isMounted, toogleMonted } = useStoreSideBar()
-    const nameOfStates = {
-        proceso: 'proceso',
-        pendiente: 'pendiente',
-        completada: 'completada'
-    }
-    const [selected, setSelected] = useState(nameOfStates.proceso)
-    const [section, setSection] = useState('create')
+    
+    const [section, setSection] = useState('crear')
 
 
     function handleOpen() {
@@ -25,10 +20,7 @@ function SideBar() {
         toogleOpen()
     }
 
-    function handleButton(e: React.MouseEvent<HTMLButtonElement>) {
-        const target = e.target as HTMLButtonElement;
-        setSelected(target.name)
-    }
+    
 
     function handleSection(sect: string) {
         setSection(sect)
@@ -37,7 +29,7 @@ function SideBar() {
 
     const sectionsComponents:Record<string, React.ReactElement> = {
         crear: <CreateTask />,
-        filtrar: <Filtertask handleButton={handleButton} selected={selected} nameOfStates={nameOfStates} />
+        filtrar: <Filtertask/>
     }
 
     return (

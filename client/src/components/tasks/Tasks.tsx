@@ -54,11 +54,14 @@ const items = [
 
 
 function TasksRender() {
-    const { token } = useUserStore()
+    const { token, authUser } = useUserStore()
     const { gettasks, tasks } = useTaskStore()
 
     useEffect(() => {
-        gettasks(token)
+        authUser()
+        if(token){
+            gettasks(token)
+        }
     }, [token])
 
 

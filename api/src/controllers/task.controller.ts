@@ -13,14 +13,30 @@ const statusOptions = {
 
 export async function getTasks(req: Request, res: Response, next: NewableFunction) {
     const { authorization } = req.headers
+    const {status, tag, search} = req.query
+    console.log(status, tag)
     try {
         const userAuth: JwtPayload | string = verify(authorization, secretKey)
         if (typeof userAuth == 'string') throwError(statusCode.noAutorizado, 'token no valido')
         if (typeof userAuth == 'object' && 'id' in userAuth) {
-            const userTasks = await prisma.task.findMany({ where: { userId: userAuth.id } })
-            response(statusCode.aceptado, userTasks)
-        } else {
-            throwError(statusCode.errorServidor, 'error inesperado')
+            if(search){
+                const userTasks = await prisma.task.findMany({ where: { userId: userAuth.id, title:{contains:search.toString(),} },include:{tags:true} })
+                response(statusCode.aceptado, userTasks)
+            }
+            else if(status && tag){
+                const userTasks = await prisma.task.findMany({ where: { userId: userAuth.id, tags:{some:{name:tag.toString()}}, status:status.toString() },include:{tags:true} })
+                response(statusCode.aceptado, userTasks)
+            }
+            else if(status){
+                const userTasks = await prisma.task.findMany({ where: { userId: userAuth.id, status:status.toString() },include:{tags:true} })
+                response(statusCode.aceptado, userTasks)
+            }else if(tag){
+                const userTasks = await prisma.task.findMany({ where: { userId: userAuth.id, tags:{some:{name:tag.toString()}} },include:{tags:true} })
+                response(statusCode.aceptado, userTasks)
+            }else{
+                const userTasks = await prisma.task.findMany({ where: { userId: userAuth.id,status:{in: ['pendiente', 'progreso']}, },include:{tags:true}, orderBy:[{status:'desc'}] })
+                response(statusCode.aceptado, userTasks)
+            }
         }
     } catch (error) {
         next(error)

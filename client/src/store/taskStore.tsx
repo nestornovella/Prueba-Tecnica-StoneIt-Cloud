@@ -1,73 +1,102 @@
 import axios from 'axios'
-import {create} from 'zustand'
+import { create } from 'zustand'
 
 
+export interface Tag {
+    name: string
+}
 
-export interface Task{
+export interface Task {
     id: string
     title: string,
     description: string,
     deadline: Date,
-    status:string
+    status: string,
+    tag: Tag[]
 }
 
-interface TaskInterface{
-    tasks:Task[]
-    gettasks: (token:string | null)=>Promise<any>
-    deleteTask:(id:string | null, token:string | null)=> any
-    logOutTask:()=>void,
-    updateTaskStatus:(id: string | null,token:string | null, status:string | null)=>Promise<any>
+interface TaskInterface {
+    tasks: Task[]
+    gettasks: (token: string | null) => Promise<any>
+    deleteTask: (id: string | null, token: string | null) => any
+    logOutTask: () => void,
+    updateTaskStatus: (id: string | null, token: string | null, status: string | null) => Promise<any>
+    filterTasks:(status:string | null, tag:string | null, token: string | null)=>void
 }
 
 
 
-export const useTaskStore =  create<TaskInterface>((set)=>({
-    
-    tasks:[],
+export const useTaskStore = create<TaskInterface>((set) => ({
 
-    gettasks:async (token)=>{
+    tasks: [],
+
+    gettasks: async (token) => {
         try {
-            
-            if(!token)throw new Error('Debes iniciar sesion')
+
+            if (!token) throw new Error('Debes iniciar sesion')
             console.log(token)
-            const response = await axios.get(import.meta.env.VITE_TASK_URL,{headers:{Authorization:token}})
-            if(response.data.status < 300){
-                set(()=>({tasks:response.data.data}))
+            const response = await axios.get(import.meta.env.VITE_TASK_URL, { headers: { Authorization: token } })
+            if (response.data.status < 300) {
+                set(() => ({ tasks: response.data.data }))
             }
-            return response
-            
-        } catch (error:any) {
+            return 200
+
+        } catch (error: any) {
             console.log(error)
-            
+
         }
-        
-
     },
 
-    logOutTask:()=>{
-        set(()=>({tasks:[]}))
-    },
-
-    deleteTask: async (id, token)=>{
+    filterTasks: async (status, tag, token) => {
         try {
-            if(!id && token)throw new Error('faltan parametros')
-            const deleted = await axios.delete(import.meta.env.VITE_TASK_URL + id, {headers:{Authorization:token}})
-            return deleted.data
-        } catch (error:any) {
+            if(status && tag){
+                const response = await axios.get(`${import.meta.env.VITE_TASK_URL}?status=${status}&tag=${tag}`, { headers: { Authorization: token } }) 
+                if (response.data.status < 300) {
+                    set(() => ({ tasks: response.data.data }))
+                }
+            }else if(status){
+                const response = await axios.get(`${import.meta.env.VITE_TASK_URL}?status=${status}`, { headers: { Authorization: token } }) 
+                if (response.data.status < 300) {
+                    set(() => ({ tasks: response.data.data }))
+                }
+            }else{
+                const response = await axios.get(`${import.meta.env.VITE_TASK_URL}?tag=${tag}`, { headers: { Authorization: token } }) 
+                if (response.data.status < 300) {
+                    set(() => ({ tasks: response.data.data }))
+                }
+            }
+            return 200
+            
+        } catch (error) {
+            console.error(error)
+        }
+    },
+
+    logOutTask: () => {
+        set(() => ({ tasks: [] }))
+    },
+
+    deleteTask: async (id, token) => {
+        try {
+            if (!id && token) throw new Error('faltan parametros')
+            await axios.delete(import.meta.env.VITE_TASK_URL + id, { headers: { Authorization: token } })
+            return 200
+        } catch (error: any) {
             return error.response.data
         }
 
     },
 
-    updateTaskStatus: async(id, token, status)=>{
+    updateTaskStatus: async (id, token, status) => {
         try {
             console.log(status)
-            if(!id || !token || !status) throw new Error('faltan parametros o son invalidos')
-            const update = await axios.put(import.meta.env.VITE_TASK_URL + id, {status:status}, {headers:{Authorization:token}})
-            if(update?.data?.data){
-                return update.data.data
+            if (!id || !token || !status) throw new Error('faltan parametros o son invalidos')
+            await axios.put(import.meta.env.VITE_TASK_URL + id, { status: status }, { headers: { Authorization: token } })
+            const response = await axios.get(import.meta.env.VITE_TASK_URL, { headers: { Authorization: token } })
+            if (response.data.status < 300) {
+                set(() => ({ tasks: response.data.data }))
             }
-
+            return 200
         } catch (error) {
             console.error(error)
         }

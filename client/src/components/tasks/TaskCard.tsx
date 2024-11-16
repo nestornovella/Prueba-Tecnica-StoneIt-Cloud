@@ -19,7 +19,7 @@ interface TaskProps{
 
 function TaskCard({title, description, deadline, id, status}:TaskProps) {
 
-    const url = 'https://e0.pxfuel.com/wallpapers/818/953/desktop-wallpaper-dark-gradient-pattern-circles-texture.jpg'
+    const url = 'https://torange.biz/photo/37/IMAGE/hearts-heart-backgrounds-lights-dark-background-37845.jpg'
     return (
         <Box component={'div'}  justifyContent={'center'}  display={'flex'}>
             <Card
