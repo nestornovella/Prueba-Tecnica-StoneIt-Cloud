@@ -69,6 +69,31 @@ function Register({ handleToggle, close }: Props) {
             }}
           />
           <TextField
+            label="email"
+            fullWidth
+            margin="normal"
+            name="email"
+            value={input.email}
+            onChange={handleInput}
+            InputLabelProps={{
+              style: { color: "white" },
+            }}
+            InputProps={{
+              style: { color: "white" },
+              sx: {
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "white",
+                },
+                "&:hover .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "white",
+                },
+                "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "white",
+                },
+              },
+            }}
+          />
+          <TextField
             label="Contraseña"
             type="password"
             name="password"

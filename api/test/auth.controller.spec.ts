@@ -35,8 +35,8 @@ describe('Auth Controller', () => {
 
   describe('generateToken', () => {
     it('should generate a token for valid credentials', async () => {
-      mockRequest.body = { username: 'testuser', password: 'testpass' };
-      const mockUser = { id: '1', username: 'testuser', password: 'hashedpass' };
+      mockRequest.body = { username: 'testuser', password: 'testpass', email: 'testemail' };
+      const mockUser = { id: '1', username: 'testuser', password: 'hashedpass', email: 'testemail' };
       (prisma.user.findUnique as jest.Mock).mockResolvedValue(mockUser);
       (bcrypt.compare as jest.Mock).mockResolvedValue(true);
       (jwt.sign as jest.Mock).mockReturnValue('mockedtoken');
@@ -47,7 +47,7 @@ describe('Auth Controller', () => {
     });
 
     it('should throw an error for missing username or password', async () => {
-      mockRequest.body = { username: 'testuser' };
+      mockRequest.body = { username: 'testuser', email: 'testemail' };
 
       await generateToken(mockRequest as Request, mockResponse as Response, mockNext);
 
@@ -55,7 +55,7 @@ describe('Auth Controller', () => {
     });
 
     it('should throw an error for non-existent user', async () => {
-      mockRequest.body = { username: 'nonexistent', password: 'testpass' };
+      mockRequest.body = { username: 'nonexistent', password: 'testpass', email: 'nonexistent' };
       (prisma.user.findUnique as jest.Mock).mockResolvedValue(null);
 
       await generateToken(mockRequest as Request, mockResponse as Response, mockNext);
@@ -64,8 +64,8 @@ describe('Auth Controller', () => {
     });
 
     it('should throw an error for invalid password', async () => {
-      mockRequest.body = { username: 'testuser', password: 'wrongpass' };
-      const mockUser = { id: '1', username: 'testuser', password: 'hashedpass' };
+      mockRequest.body = { username: 'testuser', password: 'wrongpass', email: 'wrongemail' };
+      const mockUser = { id: '1', username: 'testuser', password: 'hashedpass', email: 'testemail' };
       (prisma.user.findUnique as jest.Mock).mockResolvedValue(mockUser);
       (bcrypt.compare as jest.Mock).mockResolvedValue(false);
 
@@ -75,7 +75,7 @@ describe('Auth Controller', () => {
     });
 
     it('should call next with any unexpected error', async () => {
-      mockRequest.body = { username: 'testuser', password: 'testpass' };
+      mockRequest.body = { username: 'testuser', password: 'testpass', email: 'testemail' };
       const mockError = new Error('Unexpected error');
       (prisma.user.findUnique as jest.Mock).mockRejectedValue(mockError);
 
@@ -88,11 +88,11 @@ describe('Auth Controller', () => {
   describe('authUser', () => {
     it('should authenticate a user with a valid token', async () => {
       mockRequest.headers = { authorization: 'validtoken' };
-      (jwt.verify as jest.Mock).mockReturnValue({ id: '1', username: 'testuser' });
+      (jwt.verify as jest.Mock).mockReturnValue({ id: '1', username: 'testuser', email: 'testemail' });
 
       await authUser(mockRequest as Request, mockResponse as Response, mockNext);
 
-      expect(response).toHaveBeenCalledWith(statusCode.aceptado, { id: '1', username: 'testuser' });
+      expect(response).toHaveBeenCalledWith(statusCode.aceptado, { id: '1', username: 'testuser', email: 'testemail' });
     });
 
     it('should handle expired token', async () => {

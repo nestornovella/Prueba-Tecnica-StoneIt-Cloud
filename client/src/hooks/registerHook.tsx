@@ -8,6 +8,7 @@ function userRegisterHook() {
     const [input, setInput] = useState({
         username:'',
         password: '',
+        email: ''
     })
 
     function handleInput(e:React.ChangeEvent<HTMLInputElement>){
