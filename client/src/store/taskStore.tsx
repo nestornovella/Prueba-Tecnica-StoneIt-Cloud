@@ -16,12 +16,16 @@ export interface Task {
 }
 
 interface TaskInterface {
-    tasks: Task[]
+    tasks: Task[],
+    serchedTask: Task[],
     gettasks: (token: string | null) => Promise<any>
     deleteTask: (id: string | null, token: string | null) => any
     logOutTask: () => void,
     updateTaskStatus: (id: string | null, token: string | null, status: string | null) => Promise<any>
-    filterTasks:(status:string | null, tag:string | null, token: string | null)=>void
+    filterTasks:(status:string | null, tag:string | null, token: string | null)=>Promise<200 | undefined>
+    searchTask:(search:string | null, token:string | null)=>Promise<200 | undefined>
+    resetSearchTask:()=>void
+
 }
 
 
@@ -29,7 +33,7 @@ interface TaskInterface {
 export const useTaskStore = create<TaskInterface>((set) => ({
 
     tasks: [],
-
+    serchedTask:[],
     gettasks: async (token) => {
         try {
 
@@ -44,6 +48,24 @@ export const useTaskStore = create<TaskInterface>((set) => ({
             console.error(error)
 
         }
+    },
+
+    searchTask: async (search, token)=>{
+        try {
+            if (!token) throw new Error('Debes iniciar sesion')
+            
+                const response = await axios.get(`${import.meta.env.VITE_TASK_URL}?search=${search}`, { headers: { Authorization: token } })
+                if (response.data.status < 300) {
+                    set(() => ({ serchedTask: response.data.data }))
+                }
+                return 200
+        } catch (error) {
+            console.error(error)
+        }
+
+    },
+    resetSearchTask:()=>{
+        set(()=>({serchedTask:[]}))
     },
 
     filterTasks: async (status, tag, token) => {

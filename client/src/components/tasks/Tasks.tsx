@@ -55,7 +55,7 @@ const items = [
 
 function TasksRender() {
     const { token, authUser } = useUserStore()
-    const { gettasks, tasks } = useTaskStore()
+    const { gettasks, tasks, serchedTask } = useTaskStore()
 
     useEffect(() => {
         authUser()
@@ -66,9 +66,16 @@ function TasksRender() {
 
 
     return (
-        <Grid container margin={20} spacing={{ xs: 3, md: 2 }}>
+        <Grid  container margin={20} spacing={{ xs: 3, md: 2 }}>
             {
-                tasks?.map(e => {
+                !serchedTask.length ? tasks?.map(e => {
+                    return (
+                        <Grid key={e.id} item xs={12} md={4} xl={4} >
+                            <TaskCard deadline={e.deadline} id={e.id} title={e.title} description={e.description} status={e.status} />
+                        </Grid>
+                    )
+                }):
+                serchedTask?.map(e => {
                     return (
                         <Grid key={e.id} item xs={12} md={4} xl={4} >
                             <TaskCard deadline={e.deadline} id={e.id} title={e.title} description={e.description} status={e.status} />

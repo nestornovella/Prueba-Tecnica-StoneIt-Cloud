@@ -11,15 +11,17 @@
     // "disableReferencedProjectLoad": true,             /* Reduce the number of projects loaded automatically by TypeScript. */
 
     /* Language and Environment */
-    "module": "CommonJS",                 // Usa ESNext para soportar los módulos ES
-    "moduleResolution": "node",         // Asegura que se resuelvan las importaciones como en Node.js
-    "target": "ESNext",                    // El target debe ser ES6 o superior
-    "esModuleInterop": true,            // Habilita la interoperabilidad entre CommonJS y ES Modules
-    "allowSyntheticDefaultImports": true, // Permite importaciones por defecto de módulos CommonJS
-    "outDir": "./dist",                 // Directorio de salida para los archivos compilados
-    "rootDir": "./src",                 // Directorio raíz de tu código fuente
-    "resolveJsonModule": true,          // Si estás usando archivos JSON
+    "module": "CommonJS",                
+    "moduleResolution": "node",         
+    "target": "ESNext",                   
+    "esModuleInterop": true,           
+    "allowSyntheticDefaultImports": true,  
+    "outDir": "./dist",                
+    "rootDir": "./src",                 
+    "resolveJsonModule": true,          
     "skipLibCheck": true ,   
+    "types": ["jest", "node"],
+    "typeRoots": ["node_modules/@types"],
     
                                    /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
     // "lib": [],                                        /* Specify a set of bundled library declaration files that describe the target runtime environment. */
@@ -41,7 +43,7 @@
     // "paths": {},                                      /* Specify a set of entries that re-map imports to additional lookup locations. */
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     // "typeRoots": [],                                  /* Specify multiple folders that act like './node_modules/@types'. */
-     "types": ["jest", "node"],                                      /* Specify type package names to be included without being referenced in a source file. */
+                                         /* Specify type package names to be included without being referenced in a source file. */
     // "allowUmdGlobalAccess": true,                     /* Allow accessing UMD globals from modules. */
     // "moduleSuffixes": [],                             /* List of file name suffixes to search when resolving a module. */
     // "allowImportingTsExtensions": true,               /* Allow imports to include TypeScript file extensions. Requires '--moduleResolution bundler' and either '--noEmit' or '--emitDeclarationOnly' to be set. */

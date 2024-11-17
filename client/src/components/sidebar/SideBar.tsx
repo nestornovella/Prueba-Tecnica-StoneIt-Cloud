@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import CreateTask from "./createTask/CreateTaskComponent";
 import Filtertask from "./FilterTask";
 import HandleUtilities from "./handleUtilities";
+import RenderImages from "./configuration/RenderImages";
 //'#080808'
 
 function SideBar() {
@@ -29,7 +30,8 @@ function SideBar() {
 
     const sectionsComponents:Record<string, React.ReactElement> = {
         crear: <CreateTask />,
-        filtrar: <Filtertask/>
+        filtrar: <Filtertask/>,
+        personalizar:<RenderImages/>
     }
 
     return (

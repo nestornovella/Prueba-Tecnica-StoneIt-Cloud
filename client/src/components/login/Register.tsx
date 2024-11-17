@@ -11,13 +11,15 @@ interface Props {
 
 function Register({ handleToggle, close }: Props) {
   const [error, setError] = useState(null)
-  const {authUser} = useUserStore()
+  const {authUser, setLocalStorageToken} = useUserStore()
   const {handleInput, input, submit} = userRegisterHook()
 
   async function handleSubmit(e:React.MouseEvent<HTMLButtonElement>){
     try {
       const response = await submit(e)
-      authUser(response.data.data.token)
+      console.log(response)
+      setLocalStorageToken(response.data.data.token)
+      await authUser(response.data.data.token)
       close()
     } catch (error:any) {
       setError(error.response.data.message)

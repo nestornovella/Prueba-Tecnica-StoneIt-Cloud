@@ -11,6 +11,7 @@ interface UserInterface {
     loginUser: (user: User) => Promise<any>;
     logOut:()=> void
     authUser: (token?:string | null)=>Promise<void>
+    setLocalStorageToken:(token:string)=>void
 }
 
 
@@ -62,9 +63,14 @@ export const useUserStore = create<UserInterface>()(
 
         }
     },
+    setLocalStorageToken:(token:string)=>{
+        set(()=>({
+            token:token
+        }))
+    },
     getPersistentUser: () => {
         return get().token; // Obtener el valor de 'user' persistido
-      },
+    },
 }),{
     name:'localState',
     partialize: (store)=> ({token:store.token}),
