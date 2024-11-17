@@ -83,8 +83,6 @@ Crea una rama para tu característica: git checkout -b feature/nueva-caracterist
 Realiza tus cambios y haz commit: git commit -m 'Añadir nueva característica'.
 Haz push a la rama: git push origin feature/nueva-caracteristica.
 Abre un Pull Request.
+
 Licencia
 Este proyecto está bajo la Licencia MIT. Consulta el archivo LICENSE para más información.
-
-text
-Copy
