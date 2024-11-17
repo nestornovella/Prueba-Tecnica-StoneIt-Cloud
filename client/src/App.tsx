@@ -6,11 +6,16 @@ import SearchBar from "./components/searchBar/SearchBar";
 import SideBar from "./components/sidebar/SideBar";
 import SidebarButton from "./components/sidebar/SidebarButton";
 import { ToastContainer } from 'react-toastify';
+import { Box } from '@mui/material';
+import { useConfigStore } from './store/configStore';
 
 function App() {
+const {getWallpaper} = useConfigStore()
+
+  const wallpaper = getWallpaper()
 
   return (
-      <div>
+      <Box sx={{backgroundImage:`url(${wallpaper})`,backgroundRepeat:'no-repeat', backgroundSize:'cover', height:'100vh'}}>
         <SideBar />
         <SidebarButton />
         <Navbar />
@@ -19,7 +24,7 @@ function App() {
           <TasksRender />
         </Container>
         <ToastContainer/>
-      </div>
+      </Box>
   );
 }
 
