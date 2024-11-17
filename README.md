@@ -2,6 +2,8 @@
 
 ¡Bienvenido al desafío de desarrollo de una aplicación web de gestión de tareas! Este proyecto fue creado como prueba técnica para evaluar habilidades en desarrollo Fullstack. 
 
+![Gestión de Tareas](./client/public/1.jpeg)
+
 ## Descripción
 
 La aplicación permite a los usuarios registrarse, iniciar sesión y gestionar sus tareas personales de forma eficiente. Los usuarios pueden crear tareas con diferentes estados y etiquetas, eliminarlas y filtrar la lista de tareas según sus necesidades.
@@ -12,6 +14,8 @@ La aplicación permite a los usuarios registrarse, iniciar sesión y gestionar s
 - [Tecnologías Utilizadas](#tecnologías-utilizadas)
 - [Requisitos](#requisitos)
 - [Instalación](#instalación)
+- [Configurar Prisma](#configurar-Prisma)
+- [Configurar SQlite](#configurar-sqlite)
 - [Uso](#uso)
 - [Contribución](#contribución)
 - [Licencia](#licencia)
@@ -33,6 +37,10 @@ La aplicación permite a los usuarios registrarse, iniciar sesión y gestionar s
   - **Etiquetas**: Las tareas pueden ser etiquetadas con múltiples etiquetas (ej: "trabajo", "urgente") para una mejor organización.
   - **Filtro de Etiquetas**: Permite a los usuarios filtrar las tareas por una o varias etiquetas a la vez.
   - **Personalización de Fondos**: Los usuarios pueden personalizar los fondos de pantalla de la aplicación.
+
+  ![Interfaz de Tareas](./client/public/2.jpeg)
+  ![Interfaz de Tareas](./client/public/3.jpeg)
+  ![Interfaz de Tareas](./client/public/4.jpeg)
 
 ## Tecnologías Utilizadas
 
@@ -66,15 +74,35 @@ Instala las dependencias para el backend:
 cd api
 npm install
 
-Configura tu base de datos SQLite. Asegúrate de establecer la variable de entorno DATABASE_URL en tu archivo .env.
+## Configurar Prisma
+
+- **iniciaizar**
+npx prisma init
+
+- **crear el cliente de prisma**
+npx prisma generate
+
+- **Crear y aplicar una nueva migración**
+npx prisma migrate dev --name nombre_migracion
+
+
+## Configurar SQlite / compilar el proyecto
+
+npm run build
+
+establecer la variable de entorno DATABASE_URL en tu archivo .env.
+
 
 Uso
 
-Para iniciar el backend, navega a la carpeta del backend y ejecuta:
+Para iniciar el backend, navega a la carpeta api y ejecuta:
 npm run dev
 
-Para iniciar el frontend, navega a la carpeta del frontend y ejecuta:
+Para iniciar el frontend, navega a la carpeta client y ejecuta:
 npm run dev
+
+para ejecutar los test del backend, navega a la carpeta api y ejecuta:
+npm run test
 
 Accede a la aplicación en tu navegador en http://localhost:3001.
 
