@@ -86,14 +86,15 @@ npx prisma generate
 npx prisma migrate dev --name nombre_migracion
 
 
-## Configurar SQlite / compilar el proyecto
+## Configurar SQlite  
+- **compilar el proyecto**
 
 npm run build
 
 establecer la variable de entorno DATABASE_URL en tu archivo .env.
 
 
-Uso
+## Uso
 
 Para iniciar el backend, navega a la carpeta api y ejecuta:
 npm run dev
@@ -106,11 +107,13 @@ npm run test
 
 Accede a la aplicación en tu navegador en http://localhost:3001.
 
+## Contribucion
+
 Haz un fork del repositorio.
 Crea una rama para tu característica: git checkout -b feature/nueva-caracteristica.
 Realiza tus cambios y haz commit: git commit -m 'Añadir nueva característica'.
 Haz push a la rama: git push origin feature/nueva-caracteristica.
 Abre un Pull Request.
 
-Licencia
+## Licencia
 Este proyecto está bajo la Licencia MIT. Consulta el archivo LICENSE para más información.
