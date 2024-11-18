@@ -59,32 +59,38 @@ function TasksRender() {
 
     useEffect(() => {
         authUser()
-        if(token){
+        if (token) {
             gettasks(token)
         }
     }, [token])
 
 
     return (
-        <Grid  container margin={20} spacing={{ xs: 3, md: 2 }}>
-            {
-                !serchedTask.length ? tasks?.map(e => {
-                    return (
-                        <Grid key={e.id} item xs={12} md={4} xl={4} >
-                            <TaskCard deadline={e.deadline} id={e.id} title={e.title} description={e.description} status={e.status} />
-                        </Grid>
-                    )
-                }):
-                serchedTask?.map(e => {
-                    return (
-                        <Grid key={e.id} item xs={12} md={4} xl={4} >
-                            <TaskCard deadline={e.deadline} id={e.id} title={e.title} description={e.description} status={e.status} />
-                        </Grid>
-                    )
-                })
-            }
+        <div>
+            <Grid container margin={20} spacing={{ xs: 3, md: 2 } }>
+                {
+                    !serchedTask.length ? tasks?.map(e => {
+                        return (
+                            <Grid key={e.id} item xs={12} md={4} xl={4} >
+                                <TaskCard deadline={e.deadline} id={e.id} title={e.title} description={e.description} status={e.status} />
+                            </Grid>
+                        )
+                    }) :
+                        serchedTask?.map(e => {
+                            return (
+                                <Grid key={e.id} item xs={12} md={4} xl={4} >
+                                    <TaskCard deadline={e.deadline} id={e.id} title={e.title} description={e.description} status={e.status} />
+                                </Grid>
+                            )
+                        })
+                }
 
-        </Grid>
+            </Grid>
+        </div>
+        
+            
+
+
     );
 }
 

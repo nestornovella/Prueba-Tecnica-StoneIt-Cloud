@@ -12,8 +12,7 @@ body::-webkit-scrollbar {
 /* https://img.freepik.com/fotos-premium/gradiente-papel-pared-gradientes-fondo-gradiente-fondo-gradientes-oscuros-gradientes-colores_605423-49172.jpg */
 
 body{
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed
+
+  max-height: 100vh;
+
 }

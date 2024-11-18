@@ -15,7 +15,7 @@ const {getWallpaper} = useConfigStore()
   const wallpaper = getWallpaper()
 
   return (
-      <Box sx={{backgroundImage:`url(${wallpaper})`,backgroundRepeat:'no-repeat', backgroundSize:'cover', height:'100vh', backgroundAttachment:'fixed'}}>
+      <div style={{backgroundImage:`url(${wallpaper})`,backgroundRepeat:'no-repeat', backgroundSize:'cover', minHeight:'100vh', backgroundAttachment:'fixed'}}>
         <SideBar />
         <SidebarButton />
         <Navbar />
@@ -24,7 +24,7 @@ const {getWallpaper} = useConfigStore()
           <TasksRender />
         </Container>
         <ToastContainer/>
-      </Box>
+      </div>
   );
 }
 
