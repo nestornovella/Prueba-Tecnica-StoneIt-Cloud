@@ -3,6 +3,7 @@ import { Box, Button, TextField, Typography, Link } from "@mui/material";
 import userRegisterHook from "../../hooks/registerHook";
 import React, { useState } from "react";
 import { useUserStore } from "../../store/userStore";
+import { getToasty } from "../../helpers/totifyNotify";
 
 interface Props {
   handleToggle: () => void;
@@ -15,16 +16,22 @@ function Register({ handleToggle, close }: Props) {
   const { handleInput, input, submit } = userRegisterHook()
 
   async function handleSubmit(e: React.MouseEvent<HTMLButtonElement>) {
-    try {
-      const response = await submit(e)
-      console.log(response)
+
+    const response = await submit(e)
+    console.log(response)
+    if (response.data.status < 300) {
       setLocalStorageToken(response.data.data.token, response.data.data.user)
       await authUser(response.data.data.token)
+      getToasty('usuario registrado con exito', 'ok')
       close()
-    } catch (error: any) {
-      setError(error.response.data.message)
-
     }
+    else {
+      setError(response.data.message)
+      getToasty(response.data.message, 'e')
+    }
+
+
+
   }
 
   return (
@@ -146,14 +153,7 @@ function Register({ handleToggle, close }: Props) {
               Inicia sesión aquí
             </Link>
           </Typography>
-          <Typography
-            variant="body2"
-            color="red"
-            align="center"
-            sx={{ marginTop: 2 }}
-          >
-            {error && error}
-          </Typography>
+          
 
         </form>
       </Box>

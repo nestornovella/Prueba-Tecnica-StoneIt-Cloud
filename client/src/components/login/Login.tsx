@@ -1,7 +1,8 @@
 import { Box, Button, TextField, Typography, Link } from "@mui/material";
 import useLoginHook from "../../hooks/loginHook";
 import { useState } from "react";
-import { toast ,Bounce, Flip} from "react-toastify";
+import { toast, Bounce, Flip } from "react-toastify";
+import { getToasty } from "../../helpers/totifyNotify";
 
 interface Props {
   handleRegister: () => void;
@@ -9,28 +10,19 @@ interface Props {
 }
 
 function Login({ handleRegister, close }: Props) {
-  const {handleInput, input, submit}= useLoginHook()
+  const { handleInput, input, submit } = useLoginHook()
   const [error, setError] = useState(null)
+ 
 
-  async function handleSubmit(e:React.MouseEvent<HTMLButtonElement>){
-
-      const response = await submit(e)
-      if(!response.response){
-        toast.success('🦄 Wow so easy!', {
-          position: "bottom-right",
-          autoClose: 1500,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-          transition: Flip,
-          });
-        close()
-      }else{
-        setError(response.response.data.message)
-      }
+  async function handleSubmit(e: React.MouseEvent<HTMLButtonElement>) {
+    const response = await submit(e)
+    if (response.data.status < 300) {
+      getToasty('bienvenid@ que haremos hoy? ', 's')
+      close()
+    } else {
+      getToasty(response.data.message, 'e')
+      setError(response.data.message)
+    }
   }
   return (
     <div>
@@ -125,16 +117,6 @@ function Login({ handleRegister, close }: Props) {
               Regístrate aquí
             </Link>
           </Typography>
-          {
-           <Typography
-           variant="body2"
-           color="red"
-           align="center"
-           sx={{ marginTop: 2 }}
-         >
-         {error && error}
-         </Typography>
-          }
         </form>
       </Box>
     </div>

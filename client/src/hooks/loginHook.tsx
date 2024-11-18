@@ -23,7 +23,7 @@ function useLoginHook() {
     async function submit(e: React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault()
         const response = await loginUser(input)
-        if (!response.response) {
+        if (response.data.status < 300) {
             authUser(response.data.message)
             return response
         } else {

@@ -6,11 +6,13 @@ import { useConfigStore } from '../../../store/configStore';
 function RenderImages() {
     const wallpapers = [
         'https://i.pinimg.com/originals/8a/10/37/8a10377f0144cb32768848eedaeb93ae.jpg',
-        'https://wallpapers.com/images/hd/4k-nature-paradise-56stfzl6u0lg6u9l.jpg',
-        'https://wallpapers.com/images/hd/super-high-resolution-nature-qesqnv37jsltzlmi.jpg',
-        'https://www.creativefabrica.com/wp-content/uploads/2023/05/31/Autumn-Landscape-High-Resolution-Realistic-71036945-1.png',
+        'https://aerolatinnews.com/wp-content/uploads/2014/03/seguros-rivadavia-en-bariloche.jpg',
+        'https://plus.unsplash.com/premium_photo-1661963047742-dabc5a735357?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8dmVuZWNpYXxlbnwwfHwwfHx8MA%3D%3D',
+        'https://i.redd.it/4k-wallpaper-steampunk-train-station-v0-77dlz0e5msda1.png?width=3840&format=png&auto=webp&s=d3a1bcca6ee134966924ad05952d322b2308ab28',
         'https://images.pexels.com/photos/1619317/pexels-photo-1619317.jpeg?cs=srgb&dl=pexels-souvenirpixels-1619317.jpg&fm=jpg',
-        'https://c4.wallpaperflare.com/wallpaper/944/101/225/arbol-naturaleza-paisaje-primavera-wallpaper-preview.jpg'
+        'https://wallpapers.com/images/hd/aquatic-corals-and-sponges-lde5sor5tp69rt7i.jpg',
+        'https://wallpapers-clan.com/wp-content/uploads/2023/12/cosmonaut-in-open-space-art-desktop-wallpaper-scaled.jpg',
+        'https://www.designbcn.es/fileuploads/noticias/oficinas-modernas-20241.jpg'
 
 
     ]

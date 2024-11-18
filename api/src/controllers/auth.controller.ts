@@ -11,14 +11,14 @@ const secretKey = process.env.SECRET_KEY_JWT || 'clave-secreta-1wxcwasd234';
 export async function generateToken(req: Request, res: Response, next: NextFunction) {
     try {
         const { username, password, email } = req.body
-        if ( !password || !email) throwError(statusCode.badRequest, 'invalid params')
+        if ( !password || !email) throwError(statusCode.badRequest, 'Se requiere usuario y contraseña')
         const user = await prisma.user.findUnique({
             where: {
                 email: email,
             }
         })
-        if (!user) throwError(statusCode.noEncontrado, 'usuario invalido')
-        if (!(await compare(password, user.password))) throwError(statusCode.noAutorizado, 'contraseña invalida')
+        if (!user) throwError(statusCode.noEncontrado, 'usuario incorrecto')
+        if (!(await compare(password, user.password))) throwError(statusCode.noAutorizado, 'contraseña incorrecta')
         const token = jwt.sign({ id: user.id, username: user.username }, secretKey, { expiresIn: '1d' })
         response(statusCode.aceptado, token)
     } catch (error) {

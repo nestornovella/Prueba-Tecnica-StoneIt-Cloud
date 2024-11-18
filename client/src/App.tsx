@@ -15,7 +15,7 @@ const {getWallpaper} = useConfigStore()
   const wallpaper = getWallpaper()
 
   return (
-      <div style={{backgroundImage:`url(${wallpaper})`,backgroundRepeat:'no-repeat', backgroundSize:'cover', minHeight:'100vh', backgroundAttachment:'fixed'}}>
+      <div style={{backgroundImage:`url(${wallpaper})`,backgroundRepeat:'no-repeat', backgroundSize:'cover', minHeight:'100vh',backgroundPosition:'center' , backgroundAttachment:'fixed'}}>
         <SideBar />
         <SidebarButton />
         <Navbar />

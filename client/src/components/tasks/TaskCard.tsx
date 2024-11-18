@@ -22,32 +22,32 @@ function TaskCard({ title, description, deadline, id, status }: TaskProps) {
     const calculateRemainingDays = (deadline: Date) => {
         const now = new Date();
         const diffTime = new Date(deadline).getTime() - now.getTime();
-        const diffDays = Math.ceil(diffTime / (1000 * 3600 * 24)); 
+        const diffDays = Math.ceil(diffTime / (1000 * 3600 * 24));
         return diffDays;
     };
 
     const remainingDays = calculateRemainingDays(deadline);
     let deadlineText = `${remainingDays} días`;
-    let deadlineColor = 'green'; 
+    let deadlineColor = 'green';
 
     if (remainingDays <= 3 && remainingDays > 1) {
-        deadlineColor = 'orange'; 
+        deadlineColor = 'orange';
     } else if (remainingDays <= 1 && remainingDays >= 0) {
         deadlineText = 'Finaliza Hoy'
-        deadlineColor = 'red'; 
+        deadlineColor = 'red';
     } else if (remainingDays < 0) {
         deadlineText = 'Finalizada';
         deadlineColor = 'gray';
     }
-
+    //'#080808'
     return (
         <Box component={'div'} justifyContent={'center'} display={'flex'}>
             <Card
                 className={Styles.card}
                 sx={{
                     width: 600,
-                    height: { xs: 150, md: 200 },
-                    backgroundColor: '#080808',
+                    height: { xs: 170, md: 200 },
+                    backgroundColor: 'rgba(2, 2, 20, 0.48)' ,
                     color: 'white',
                     position: 'relative',
                     overflow: 'hidden',
@@ -55,6 +55,7 @@ function TaskCard({ title, description, deadline, id, status }: TaskProps) {
                         display: 'flex',
                     },
                     borderRadius: 2,
+                    
                 }}
             >
                 <CardMedia
@@ -74,15 +75,17 @@ function TaskCard({ title, description, deadline, id, status }: TaskProps) {
                 </CardMedia>
                 <CardSelect id={id} status={status} />
                 <CardContent sx={{ maxHeight: { xs: 140 }, overflow: 'hidden' }}>
-                    <Typography gutterBottom color="info" variant="button" component="div">
+                    <Typography  fontFamily={'Sour Gummy'}fontSize={17} gutterBottom sx={{color:'#fff'}} variant="button" component="div">
                         {title}
                     </Typography>
-                    <Typography variant="body2" color="">
-                        {description}
-                    </Typography>
+                    <Box sx={{ overflowY: 'scroll', height: '60px' }} component={'div'}>
+                        <Typography fontFamily={'Sour Gummy'} fontSize={13} fontWeight={500}   variant="body2" sx={{color:'#fff'}}>
+                            {description}
+                        </Typography>
+                    </Box>
                 </CardContent>
                 <CardFooter id={id} />
-                <Box sx={{ textAlign: 'center', marginTop: 2 }}>
+                <Box sx={{ textAlign: 'center' }}>
                     <Typography
                         variant="body2"
                         color={deadlineColor}

@@ -22,7 +22,7 @@ export async function userRegister(req: Request, res: Response, next: NextFuncti
 
     const { username, password, email } = req.body
     try {
-        if (!username || !password || !email) throwError(statusCode.badRequest, "parametros invalidos")
+        if (!username || !password || !email) throwError(statusCode.badRequest, "se requiere nombre de usuario email y contraseña")
         const verifyUserExistence = await prisma.user.findFirst({where:{email: email}})
         if(verifyUserExistence) throwError(statusCode.badRequest, 'el usuario que intenta crear ya existe')
         const newUser = await prisma.user.create({

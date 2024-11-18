@@ -24,7 +24,7 @@ app.use('/', router)
 app.use((err:Error, req:Request, res:Response, next:NextFunction) => {
     const status = err.status || 500;  
     const message = err.message || err || 'Internal Server Error';  
-    res.status(status).json({ status, message });  
+    res.json({ status, message });  
 });
 
 
