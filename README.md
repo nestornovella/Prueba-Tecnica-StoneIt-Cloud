@@ -93,6 +93,27 @@ npm run build
 
 establecer la variable de entorno DATABASE_URL en tu archivo .env.
 
+## añade variables de entorno !IMPORTANTE==========================================!
+
+api:
+.env[
+  DATABASE_URL="file:../../db/database.db"
+  SECRET_KEY_JWT='dscwksa23sdaw'
+]
+
+client:
+.env[ 
+  VITE_AUTH_URL= http://localhost:3001/auth/
+  VITE_USER_URL= http://localhost:3001/user/
+  VITE_TASK_URL= http://localhost:3001/task/
+]
+
+
+npm run build
+
+establecer la variable de entorno DATABASE_URL en tu archivo .env.
+
+
 
 ## Uso
 
