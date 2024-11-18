@@ -9,7 +9,8 @@ function useLoginHook() {
 
     const [input, setInput] = useState({
         username: '',
-        password: ''
+        password: '',
+        email: ''
     })
 
 

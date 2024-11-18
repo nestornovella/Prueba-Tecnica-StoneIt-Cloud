@@ -20,18 +20,19 @@ export async function getAllUsers(req: Request, res: Response, next: NextFunctio
 
 export async function userRegister(req: Request, res: Response, next: NextFunction) {
 
-    const { username, password } = req.body
+    const { username, password, email } = req.body
     try {
-        if (!username || !password) throwError(statusCode.badRequest, "parametros invalidos")
-        const verifyUserExistence = await prisma.user.findUnique({where:{username:username}})
+        if (!username || !password || !email) throwError(statusCode.badRequest, "parametros invalidos")
+        const verifyUserExistence = await prisma.user.findUnique({where:{email: email}})
         if(verifyUserExistence) throwError(statusCode.badRequest, 'el usuario que intenta crear ya existe')
         const newUser = await prisma.user.create({
             data: {
                 username,
-                password: await hash(password, 10)
+                password: await hash(password, 10),
+                email
             }
         })
-        const token = jwt.sign({ id: newUser.id, username: newUser.username }, secretKey, { expiresIn: '1d' })
+        const token = jwt.sign({ id: newUser.id, username: newUser.username, email: newUser.email }, secretKey, { expiresIn: '1d' })
 
         if (!newUser) throwError(statusCode.errorServidor, 'usuario no creado')
 

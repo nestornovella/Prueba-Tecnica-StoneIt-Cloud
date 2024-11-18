@@ -9,6 +9,7 @@ function userRegisterHook() {
         email:'',
         username:'',
         password: '',
+        email: ''
     })
 
     function handleInput(e:React.ChangeEvent<HTMLInputElement>){

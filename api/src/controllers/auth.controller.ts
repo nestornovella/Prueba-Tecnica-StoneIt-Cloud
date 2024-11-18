@@ -10,16 +10,16 @@ const secretKey = process.env.SECRET_KEY_JWT || 'clave-secreta-1wxcwasd234';
 
 export async function generateToken(req: Request, res: Response, next: NextFunction) {
     try {
-        const { username, password } = req.body
-        if (!username || !password) throwError(statusCode.badRequest, 'invalid params')
+        const { username, password, email } = req.body
+        if (!username || !password || !email) throwError(statusCode.badRequest, 'invalid params')
         const user = await prisma.user.findUnique({
             where: {
-                username: username,
+                email: email,
             }
         })
         if (!user) throwError(statusCode.noEncontrado, 'usuario invalido')
         if (!(await compare(password, user.password))) throwError(statusCode.noAutorizado, 'contraseña invalida')
-        const token = jwt.sign({ id: user.id, username: user.username }, secretKey, { expiresIn: '1d' })
+        const token = jwt.sign({ id: user.id, username: user.username, email: user.email }, secretKey, { expiresIn: '1d' })
         response(statusCode.aceptado, token)
     } catch (error) {
         next(error)
@@ -30,8 +30,8 @@ export async function generateToken(req: Request, res: Response, next: NextFunct
 export async function authUser(req: Request, res: Response, next: NextFunction) {
     const { authorization } = req.headers;
     try {
-        const {id, username}:any = jwt.verify(authorization, secretKey)
-        response(statusCode.aceptado, {id, username})
+        const {id, username, email}:any = jwt.verify(authorization, secretKey)
+        response(statusCode.aceptado, {id, username, email})
     } catch (error) {
         const er:any = new Error()
         if (error instanceof jwt.TokenExpiredError) {

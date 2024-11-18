@@ -51,7 +51,32 @@ function Login({ handleRegister, close }: Props) {
           <TextField
             value={input.username}
             name={'username'}
-            label="Correo electrónico"
+            label="user name"
+            fullWidth
+            margin="normal"
+            onChange={handleInput}
+            InputLabelProps={{
+              style: { color: "white" },
+            }}
+            InputProps={{
+              style: { color: "white" },
+              sx: {
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "white",
+                },
+                "&:hover .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "white",
+                },
+                "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "white",
+                },
+              },
+            }}
+          />
+          <TextField
+            value={input.email}
+            name={'email'}
+            label="email"
             fullWidth
             margin="normal"
             onChange={handleInput}

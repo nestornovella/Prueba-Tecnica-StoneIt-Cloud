@@ -23,7 +23,7 @@ const URLS = {
 interface User{
     username: string
     password: string
-    email:string
+    email: string
 }
 
 export const useUserStore = create<UserInterface>()(
