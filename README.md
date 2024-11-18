@@ -93,7 +93,7 @@ npm run build
 
 establecer la variable de entorno DATABASE_URL en tu archivo .env.
 
-## añade variables de entorno !IMPORTANTE==========================================!
+## añade variables de entorno al proyecto en carpetas client y api !IMPORTANTE==========================================!
 
 api:
 .env[
