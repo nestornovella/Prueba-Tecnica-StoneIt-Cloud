@@ -12,7 +12,7 @@ interface Task {
     title: string;
     description: string;
     completed: boolean;
-  }
+}
 
 interface TaskState {
     data: object;

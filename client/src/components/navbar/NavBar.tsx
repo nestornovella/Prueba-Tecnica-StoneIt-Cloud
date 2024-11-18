@@ -9,14 +9,12 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import LoginModal from '../login/LoginModal';
 import useToogle from '../../hooks/toogleHook';
 import { useUserStore } from '../../store/userStore';
 import { useTaskStore } from '../../store/taskStore';
-import { Link } from '@mui/material';
 
 
 const pages: string[] = [];
@@ -141,11 +139,12 @@ function NavBar() {
           <Box sx={{ flexGrow: 0 }}>
             {
               user ?
-              
+              <Box component={'div'} sx={{display:'flex', justifyContent:'center', alignItems:'center', gap:1}}>
+                <Typography variant="h6" color="white">Hi {user.username}</Typography>
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                    <Avatar alt="Remy Sharp" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoJaE35zIQlpXHw9GjaNxyj_eRr4ZOeLc0rVXDcoyyMT0p64_hcvpNmm17ugt2jh1W754&usqp=CAU" />
                   </IconButton>
-                
+              </Box>
                 :
                 <Button variant="outlined" onClick={open}  >
                   Login

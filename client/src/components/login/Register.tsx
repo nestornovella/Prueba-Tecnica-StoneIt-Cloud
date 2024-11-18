@@ -6,24 +6,24 @@ import { useUserStore } from "../../store/userStore";
 
 interface Props {
   handleToggle: () => void;
-  close:()=> void
+  close: () => void
 }
 
 function Register({ handleToggle, close }: Props) {
   const [error, setError] = useState(null)
-  const {authUser, setLocalStorageToken} = useUserStore()
-  const {handleInput, input, submit} = userRegisterHook()
+  const { authUser, setLocalStorageToken } = useUserStore()
+  const { handleInput, input, submit } = userRegisterHook()
 
-  async function handleSubmit(e:React.MouseEvent<HTMLButtonElement>){
+  async function handleSubmit(e: React.MouseEvent<HTMLButtonElement>) {
     try {
       const response = await submit(e)
       console.log(response)
-      setLocalStorageToken(response.data.data.token)
+      setLocalStorageToken(response.data.data.token, response.data.data.user)
       await authUser(response.data.data.token)
       close()
-    } catch (error:any) {
+    } catch (error: any) {
       setError(error.response.data.message)
-      
+
     }
   }
 
@@ -47,8 +47,34 @@ function Register({ handleToggle, close }: Props) {
             label="Nombre de usuario"
             fullWidth
             margin="normal"
-             name="username"
+            name="username"
             value={input.username}
+            onChange={handleInput}
+            InputLabelProps={{
+              style: { color: "white" },
+            }}
+            InputProps={{
+              style: { color: "white" },
+              sx: {
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "white",
+                },
+                "&:hover .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "white",
+                },
+                "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "white",
+                },
+              },
+            }}
+          />
+          <TextField
+            label="Email"
+            type="email"
+            fullWidth
+            margin="normal"
+            name="email"
+            value={input.email}
             onChange={handleInput}
             InputLabelProps={{
               style: { color: "white" },
@@ -126,9 +152,9 @@ function Register({ handleToggle, close }: Props) {
             align="center"
             sx={{ marginTop: 2 }}
           >
-          {error && error}
+            {error && error}
           </Typography>
-          
+
         </form>
       </Box>
     </div>

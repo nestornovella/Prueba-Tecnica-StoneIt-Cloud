@@ -50,7 +50,7 @@ function CreateTask() {
                         fullWidth
                         margin="normal"
                         multiline
-                        rows={4}  // Especifica el número de líneas visibles en el textarea
+                        rows={4}  
                         InputLabelProps={{
                             style: { color: "white" },
                         }}

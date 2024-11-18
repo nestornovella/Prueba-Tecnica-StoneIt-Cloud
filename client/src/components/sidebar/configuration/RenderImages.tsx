@@ -1,7 +1,7 @@
 import { Grid } from '@mui/material';
 import WallpaperImage from './WallpaperImage'; // Asegúrate de importar tu componente de imagen
 import { useConfigStore } from '../../../store/configStore';
-// Asegúrate de importar correctamente el hook de configuración
+
 
 function RenderImages() {
     const wallpapers = [

@@ -8,7 +8,6 @@ const SimpleDatePicker: React.FC<Props> = ({ handleInput }) => {
   const [date, setDate] = useState(new Date().toISOString().split("T")[0])
 
   function testHandle(e:any){
-    // Usamos UTC para evitar ajustes
     setDate(e.target.value)
     handleInput(e)
   }

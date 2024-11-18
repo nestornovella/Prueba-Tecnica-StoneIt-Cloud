@@ -6,6 +6,7 @@ import { useState } from "react";
 function userRegisterHook() {
     
     const [input, setInput] = useState({
+        email:'',
         username:'',
         password: '',
     })

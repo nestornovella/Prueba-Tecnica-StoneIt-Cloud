@@ -3,15 +3,15 @@ import {create} from 'zustand'
 import {persist} from 'zustand/middleware'
 
 interface UserInterface {
-    user: null | object;
+    user: null | User;
     errors: null | Record<string, string>
     loading: boolean;
     token: null | string,
     getPersistentUser:()=> string | null
-    loginUser: (user: User) => Promise<any>;
+    loginUser: (user:any) => Promise<any>;
     logOut:()=> void
     authUser: (token?:string | null)=>Promise<void>
-    setLocalStorageToken:(token:string)=>void
+    setLocalStorageToken:(token:string, user:User)=>void
 }
 
 
@@ -23,6 +23,7 @@ const URLS = {
 interface User{
     username: string
     password: string
+    email:string
 }
 
 export const useUserStore = create<UserInterface>()(
@@ -47,6 +48,10 @@ export const useUserStore = create<UserInterface>()(
             set(()=> ({token: null, user:null}))
         
     }, 
+    getUser: () => {
+        return get().user; // Obtener el valor de 'user' persistido
+    },
+    
     authUser: async (token)=>{
         try {
             
@@ -69,11 +74,11 @@ export const useUserStore = create<UserInterface>()(
         }))
     },
     getPersistentUser: () => {
-        return get().token; // Obtener el valor de 'user' persistido
+        return get().token; 
     },
 }),{
     name:'localState',
-    partialize: (store)=> ({token:store.token}),
+    partialize: (store)=> ({token:store.token, user:store.user}),
 
 })
     )
