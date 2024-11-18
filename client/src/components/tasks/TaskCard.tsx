@@ -22,7 +22,7 @@ function TaskCard({ title, description, deadline, id, status }: TaskProps) {
     const calculateRemainingDays = (deadline: Date) => {
         const now = new Date();
         const diffTime = new Date(deadline).getTime() - now.getTime();
-        const diffDays = Math.ceil(diffTime / (1000 * 3600 * 24)); // Diferencia en días
+        const diffDays = Math.ceil(diffTime / (1000 * 3600 * 24)); 
         return diffDays;
     };
 
@@ -33,6 +33,7 @@ function TaskCard({ title, description, deadline, id, status }: TaskProps) {
     if (remainingDays <= 3 && remainingDays > 1) {
         deadlineColor = 'orange'; 
     } else if (remainingDays <= 1 && remainingDays >= 0) {
+        deadlineText = 'Finaliza Hoy'
         deadlineColor = 'red'; 
     } else if (remainingDays < 0) {
         deadlineText = 'Finalizada';
