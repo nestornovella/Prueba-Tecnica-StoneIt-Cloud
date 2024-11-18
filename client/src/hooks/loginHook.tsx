@@ -8,7 +8,6 @@ function useLoginHook() {
     const { loginUser, authUser, loading } = useUserStore()
 
     const [input, setInput] = useState({
-        username: '',
         password: '',
         email: ''
     })

@@ -31,8 +31,7 @@ export async function deleteTag(req: Request, res: Response, next: NextFunction)
     try {
         if (!id) throwError(statusCode.badRequest, 'parametros invalidos se requiere el id')
         const deleted = await prisma.tag.delete({ where: { id: id } })
-     
-       
+
         return response(statusCode.aceptado, "eliminado con exito" )
 
 
