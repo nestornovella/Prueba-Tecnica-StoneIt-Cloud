@@ -4,17 +4,18 @@ interface Props {
   handleInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const SimpleDatePicker: React.FC<Props> = ({ handleInput }) => {
-  const [date, setDate] = useState(new Date().toISOString().split("T")[0])
+const SimpleDatePicker = ({ handleInput }:Props) => {
+  const today = new Date().toISOString().split("T")[0];
+  const [date, setDate] = useState(today);
 
-  function testHandle(e:any){
-    setDate(e.target.value)
-    handleInput(e)
+  function testHandle(e: React.ChangeEvent<HTMLInputElement>) {
+    setDate(e.target.value);
+    handleInput(e);
   }
 
   return (
-    <div style={{display:'block', height:'81px'}}>
-      <label htmlFor="deadline" style={{ display: "flex"}}>
+    <div style={{ display: "block", height: "81px" }}>
+      <label htmlFor="deadline" style={{ display: "flex" }}>
         Selecciona una fecha
       </label>
       <input
@@ -23,13 +24,13 @@ const SimpleDatePicker: React.FC<Props> = ({ handleInput }) => {
         name="deadline"
         value={date}
         onChange={testHandle}
+        min={today}
         style={{
           padding: "13px",
-          
           fontSize: "16px",
-          fontFamily:"Roboto",
-          fontWeight:'500',
-          minWidth:'100%',
+          fontFamily: "Roboto",
+          fontWeight: "500",
+          minWidth: "100%",
           border: "1px solid #ccc",
           borderRadius: "4px",
           width: "100%",

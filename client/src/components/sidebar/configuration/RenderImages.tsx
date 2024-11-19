@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 import WallpaperImage from './WallpaperImage'; // Asegúrate de importar tu componente de imagen
 import { useConfigStore } from '../../../store/configStore';
 
@@ -17,15 +17,19 @@ function RenderImages() {
 
     ]
     return (
-        <Grid padding={4} container spacing={2} justifyContent="center">
-            {
-                wallpapers.map(wp => {
-                    return <Grid item xs={6} sm={6} md={6} xl={6}>
-                        <WallpaperImage src={wp as string} />
-                    </Grid>
-                })
-            }
-        </Grid>
+        <Box padding={5} component={'div'}>
+            <Typography fontFamily={"monospace"} color="white">Filtrar por:</Typography>
+            <Grid padding={4} container spacing={2} justifyContent="center">
+
+                {
+                    wallpapers.map(wp => {
+                        return <Grid item xs={6} sm={6} md={6} xl={6}>
+                            <WallpaperImage src={wp as string} />
+                        </Grid>
+                    })
+                }
+            </Grid>
+        </Box>
     );
 }
 

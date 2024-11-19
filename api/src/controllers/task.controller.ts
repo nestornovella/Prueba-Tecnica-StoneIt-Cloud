@@ -22,6 +22,10 @@ export async function getTasks(req: Request, res: Response, next: NewableFunctio
                 const userTasks = await prisma.task.findMany({ where: { userId: userAuth.id, title:{contains:search.toString(),} },include:{tags:true} })
                 response(statusCode.aceptado, userTasks)
             }
+            else if(status && status == 'all' && tag){
+                const userTasks = await prisma.task.findMany({ where: { userId: userAuth.id, tags:{some:{name:tag.toString()}},status:{in: ['pendiente', 'progreso']} },include:{tags:true} })
+                response(statusCode.aceptado, userTasks)
+            }
             else if(status && tag){
                 const userTasks = await prisma.task.findMany({ where: { userId: userAuth.id, tags:{some:{name:tag.toString()}}, status:status.toString() },include:{tags:true} })
                 response(statusCode.aceptado, userTasks)

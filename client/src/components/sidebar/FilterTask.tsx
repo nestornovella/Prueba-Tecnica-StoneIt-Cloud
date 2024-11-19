@@ -12,11 +12,13 @@ const nameOfStates = {
     proceso: 'progreso',
     pendiente: 'pendiente',
     completada: 'completada',
-    pendientesProceso: 'standard'
+    pendientesProceso: 'all'
 }
 
 function Filtertask() {
     const [selected, setSelected] = useState(nameOfStates.pendientesProceso)
+    const [tagSelected, setTagSelected] = useState<string | null>(null)
+
     const { token } = useUserStore()
     const { filterTasks, gettasks } = useTaskStore()
     const { getTags, tags } = useTaskCreateHook()
@@ -24,17 +26,17 @@ function Filtertask() {
     function handleButton(e: React.MouseEvent<HTMLButtonElement>) {
         const target = e.target as HTMLButtonElement;
         setSelected(target.name)
-        if (target.name == 'standard') {
+        if (target.name == 'all') {
             gettasks(token)
+            setTagSelected(null)
         } else {
-            filterTasks(target.name, null, token)
+            filterTasks(target.name, tagSelected || null, token)
         }
     }
 
     function handleTag(e: React.MouseEvent<HTMLButtonElement>) {
-        const target = e.target as HTMLButtonElement;
-
-        filterTasks(null, e.currentTarget.name, token)
+        setTagSelected(e.currentTarget.name)
+        filterTasks(selected, e.currentTarget.name, token)
 
     }
 
@@ -43,8 +45,8 @@ function Filtertask() {
     }, [])
     return (
         <Box component={'div'} padding={5} border={1} sx={{ background: '' }}>
-            <Typography fontFamily={"monospace"} color="white">Filtrar por:</Typography>
-            <Button fullWidth onClick={handleButton} name={nameOfStates.pendientesProceso} variant={selected.includes(nameOfStates.pendientesProceso) ? 'contained' : 'outlined'} color="secondary">
+            <Typography marginBottom={4} fontFamily={"monospace"} color="white">Filtrar por:</Typography>
+            <Button  fullWidth onClick={handleButton} name={nameOfStates.pendientesProceso} variant={selected.includes(nameOfStates.pendientesProceso) ? 'contained' : 'outlined'} color="secondary">
                 pendientes y en proceso
             </Button>
             <Box display={"flex"} paddingY={2} justifyContent={'start'} gap={3}>
@@ -62,12 +64,15 @@ function Filtertask() {
             <Box display={"flex"} paddingY={2} justifyContent={'start'} gap={3}>
                 {
                     tags?.map((t: Tag) => {
-                        return <Button onClick={handleTag} name={t.name} variant={!selected.includes('') ? 'contained' : 'outlined'} color="secondary">
+                        return <Button onClick={handleTag} name={t.name} variant={tagSelected?.toString().includes(t.name) ? 'contained' : 'outlined'} color="secondary">
                             {t.name}
                         </Button>
                     })
                 }
 
+            </Box>
+            <Box component={'div'} sx={{width:'100%', display:'flex', alignItems:'center', justifyContent:'center'}}>
+                <img style={{width:'100%'}}  src="https://static.vecteezy.com/system/resources/previews/030/962/814/non_2x/color-explosion-color-explosion-transparent-background-ai-generative-free-png.png"/>
             </Box>
         </Box>
     );

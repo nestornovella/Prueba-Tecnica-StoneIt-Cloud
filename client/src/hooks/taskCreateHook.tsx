@@ -57,9 +57,9 @@ function useTaskCreateHook() {
     async function getTags() {
         const response = await axios.get(import.meta.env.VITE_TAG_URL)
         if (response.data.status < 300) {
-            console.log(response.data)
             setTags(response.data.data)
         }
+        return response
     }
 
     async function submit(e: MouseEventButton) {
