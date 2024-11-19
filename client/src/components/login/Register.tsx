@@ -22,7 +22,7 @@ function Register({ handleToggle, close }: Props) {
     if (response.data.status < 300) {
       setLocalStorageToken(response.data.data.token, response.data.data.user)
       await authUser(response.data.data.token)
-      getToasty('usuario registrado con exito', 'ok')
+      getToasty('usuario registrado con exito', 's')
       close()
     }
     else {
