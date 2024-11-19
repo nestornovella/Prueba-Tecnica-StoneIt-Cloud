@@ -45,8 +45,8 @@ function Filtertask() {
     }, [])
     return (
         <Box component={'div'} padding={5} border={1} sx={{ background: '' }}>
-            <Typography fontFamily={"monospace"} color="white">Filtrar por:</Typography>
-            <Button fullWidth onClick={handleButton} name={nameOfStates.pendientesProceso} variant={selected.includes(nameOfStates.pendientesProceso) ? 'contained' : 'outlined'} color="secondary">
+            <Typography marginBottom={4} fontFamily={"monospace"} color="white">Filtrar por:</Typography>
+            <Button  fullWidth onClick={handleButton} name={nameOfStates.pendientesProceso} variant={selected.includes(nameOfStates.pendientesProceso) ? 'contained' : 'outlined'} color="secondary">
                 pendientes y en proceso
             </Button>
             <Box display={"flex"} paddingY={2} justifyContent={'start'} gap={3}>
@@ -70,6 +70,9 @@ function Filtertask() {
                     })
                 }
 
+            </Box>
+            <Box component={'div'} sx={{width:'100%', display:'flex', alignItems:'center', justifyContent:'center'}}>
+                <img style={{width:'100%'}}  src="https://static.vecteezy.com/system/resources/previews/030/962/814/non_2x/color-explosion-color-explosion-transparent-background-ai-generative-free-png.png"/>
             </Box>
         </Box>
     );
