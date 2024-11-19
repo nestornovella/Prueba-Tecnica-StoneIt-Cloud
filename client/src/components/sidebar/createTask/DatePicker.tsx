@@ -13,8 +13,8 @@ const SimpleDatePicker: React.FC<Props> = ({ handleInput }) => {
   }
 
   return (
-    <div>
-      <label htmlFor="deadline" style={{ display: "block", marginBottom: "8px" }}>
+    <div style={{display:'block', height:'81px'}}>
+      <label htmlFor="deadline" style={{ display: "flex"}}>
         Selecciona una fecha
       </label>
       <input
@@ -24,7 +24,8 @@ const SimpleDatePicker: React.FC<Props> = ({ handleInput }) => {
         value={date}
         onChange={testHandle}
         style={{
-          padding: "10px",
+          padding: "13px",
+          
           fontSize: "16px",
           fontFamily:"Roboto",
           fontWeight:'500',

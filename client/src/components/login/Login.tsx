@@ -1,7 +1,6 @@
 import { Box, Button, TextField, Typography, Link } from "@mui/material";
 import useLoginHook from "../../hooks/loginHook";
 import { useState } from "react";
-import { toast, Bounce, Flip } from "react-toastify";
 import { getToasty } from "../../helpers/totifyNotify";
 
 interface Props {
@@ -12,7 +11,6 @@ interface Props {
 function Login({ handleRegister, close }: Props) {
   const { handleInput, input, submit } = useLoginHook()
   const [error, setError] = useState(null)
- 
 
   async function handleSubmit(e: React.MouseEvent<HTMLButtonElement>) {
     const response = await submit(e)
