@@ -62,17 +62,15 @@ La aplicación permite a los usuarios registrarse, iniciar sesión y gestionar s
 
 ## Instalación
 
-1. Clona el repositorio:
-   
-   git clone (https://github.com/nestornovella/Prueba-Tecnica-StoneIt-Cloud.git)
+1. Clona el repositorio: git clone (https://github.com/nestornovella/Prueba-Tecnica-StoneIt-Cloud.git)
 
-Instala las dependencias para el frontend:
-cd client
-npm install
+2. Instala las dependencias para el frontend:
+- cd client
+- npm install
 
-Instala las dependencias para el backend:
-cd api
-npm install
+3. Instala las dependencias para el backend:
+- cd api
+- npm install
 
 ## Configurar Prisma
 
@@ -87,46 +85,34 @@ npx prisma migrate dev --name nombre_migracion
 
 
 ## Configurar SQlite  
+
 - **compilar el proyecto**
-
 npm run build
 
-establecer la variable de entorno DATABASE_URL en tu archivo .env.
+# establecer la variable de entorno DATABASE_URL en tu archivo .env.
 
-## añade variables de entorno al proyecto en carpetas client y api !IMPORTANTE==========================================!
+- **api**
+- DATABASE_URL="file:../../db/database.db"
+- SECRET_KEY_JWT='dscwksa23sdaw'
 
-api:
-.env[
-  DATABASE_URL="file:../../db/database.db"
-  SECRET_KEY_JWT='dscwksa23sdaw'
-]
-
-client:
-.env[ 
-  VITE_AUTH_URL= http://localhost:3001/auth/
-  VITE_USER_URL= http://localhost:3001/user/
-  VITE_TASK_URL= http://localhost:3001/task/
-]
-
-
-npm run build
-
-establecer la variable de entorno DATABASE_URL en tu archivo .env.
-
+- **client**
+- VITE_AUTH_URL= http://localhost:3001/auth/
+- VITE_USER_URL= http://localhost:3001/user/
+- VITE_TASK_URL= http://localhost:3001/task/
 
 
 ## Uso
 
-Para iniciar el backend, navega a la carpeta api y ejecuta:
+1. Para iniciar el backend, navega a la carpeta api y ejecuta:
 npm run dev
 
-Para iniciar el frontend, navega a la carpeta client y ejecuta:
+2. Para iniciar el frontend, navega a la carpeta client y ejecuta:
 npm run dev
 
-para ejecutar los test del backend, navega a la carpeta api y ejecuta:
+3. ara ejecutar los test del backend, navega a la carpeta api y ejecuta:
 npm run test
 
-Accede a la aplicación en tu navegador en http://localhost:3001.
+4. Accede a la aplicación en tu navegador en http://localhost:3001.
 
 ## Contribucion
 
