@@ -19,7 +19,7 @@ async function reminderMail(email: string, tasks: { title: string, deadline: Dat
     from: process.env.EMAIL_USER,
     to: email,
     subject: 'recordatorio de tarea próxima a vencer',
-    text: `tu tarea ${taskList} esta p´roxima a vencer. no olvides completarla`
+    text: `tu tarea ${taskList} esta proxima a vencer. no olvides completarla`
   }
   await transporter.sendMail(mailOptions);
 }

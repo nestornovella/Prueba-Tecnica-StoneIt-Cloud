@@ -30,13 +30,13 @@ function TaskCard({ title, description, deadline, id, status, tags }: TaskProps)
 
     const remainingDays = calculateRemainingDays(deadline);
     let deadlineText = `${remainingDays} días`;
-    let deadlineColor = 'green';
+    let deadlineColor = '#14f073';
 
     if (remainingDays <= 3 && remainingDays > 1) {
-        deadlineColor = 'orange';
+        deadlineColor = '#f0f40a';
     } else if (remainingDays <= 1 && remainingDays >= 0) {
         deadlineText = 'Finaliza Hoy'
-        deadlineColor = 'red';
+        deadlineColor = '#f01477';
     } else if (remainingDays < 0) {
         deadlineText = 'Finalizada';
         deadlineColor = 'gray';
@@ -49,7 +49,7 @@ function TaskCard({ title, description, deadline, id, status, tags }: TaskProps)
                 sx={{
                     width: 600,
                     height: { xs: 170, md: 200 },
-                    backgroundColor: 'rgba(2, 2, 20, 0.48)' ,
+                    backgroundColor: 'rgba(2, 2, 20, 0.696)' ,
                     color: 'white',
                     position: 'relative',
                     overflow: 'hidden',

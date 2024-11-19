@@ -23,6 +23,7 @@ app.use(morgan('dev'))
 app.use(captureRes)
 app.use('/', router)
 
+//implementacion de cro, esto es para envio de emails en caso de ser requerido cheque las tareas proximas a vencer
 export function startTaskReminderService() {
     cron.schedule('0 12 * * *', async () => {
       console.log('Running task reminder check...');
