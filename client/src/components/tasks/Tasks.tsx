@@ -1,4 +1,4 @@
-import { styled } from '@mui/material/styles';
+
 import { Box, Grid, Paper } from "@mui/material";
 import TaskCard from './TaskCard';
 import { useTaskStore } from '../../store/taskStore';
@@ -27,14 +27,14 @@ function TasksRender() {
                     !serchedTask.length ? tasks?.map(e => {
                         return (
                             <Grid key={e.id} item xs={12} md={4} xl={4} >
-                                <TaskCard deadline={e.deadline} id={e.id} title={e.title} description={e.description} status={e.status} />
+                                <TaskCard deadline={e.deadline} id={e.id} title={e.title} description={e.description} status={e.status} tags={e.tags}/>
                             </Grid>
                         )
                     }) :
                         serchedTask?.map(e => {
                             return (
                                 <Grid key={e.id} item xs={12} md={4} xl={4} >
-                                    <TaskCard deadline={e.deadline} id={e.id} title={e.title} description={e.description} status={e.status} />
+                                    <TaskCard deadline={e.deadline} id={e.id} title={e.title} description={e.description} status={e.status} tags={e.tags}/>
                                 </Grid>
                             )
                         })

@@ -7,6 +7,7 @@ import Styles from './card.module.css';
 import CardSelect from './CardSelect';
 import { Box } from '@mui/material';
 import CardFooter from './CardFooter';
+import { Tag } from '../../store/taskStore';
 
 interface TaskProps {
     title: string;
@@ -14,9 +15,10 @@ interface TaskProps {
     deadline: Date;
     id: string;
     status: string;
+    tags: Tag[]
 }
 
-function TaskCard({ title, description, deadline, id, status }: TaskProps) {
+function TaskCard({ title, description, deadline, id, status, tags }: TaskProps) {
     const url = 'https://torange.biz/photo/37/IMAGE/hearts-heart-backgrounds-lights-dark-background-37845.jpg';
 
     const calculateRemainingDays = (deadline: Date) => {
@@ -90,9 +92,18 @@ function TaskCard({ title, description, deadline, id, status }: TaskProps) {
                         variant="body2"
                         color={deadlineColor}
                         sx={{ fontWeight: 'bold' }}
-                    >
+                        >
                         {`Finaliza en: ${deadlineText}`}
                     </Typography>
+                    <Box component={'div'} sx={{display:'flex', position:'absolute', top:10}}>
+                        {
+                            tags.map((tg:Tag) =>{
+                                return <Box marginLeft={1} justifyContent={'center'} alignItems={'center'} sx={{backgroundColor:'#0202CE', width:"28px", height:"28px", borderRadius:10, textAlign:'center', display:'flex' }}>
+                                    <Typography fontSize={13} variant="button" component={'div'} color="white">{tg.name.split('').slice(0, 2).join('')}</Typography>
+                                </Box>
+                            })
+                        }
+                    </Box>
                 </Box>
             </Card>
         </Box>

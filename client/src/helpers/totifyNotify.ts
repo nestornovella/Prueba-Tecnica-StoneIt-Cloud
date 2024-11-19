@@ -3,11 +3,11 @@ import { Bounce, toast } from "react-toastify";
 
 
 
-export function getToasty(message: string, status:string) {
+export function getToasty(message: string, status:string, center?:boolean) {
 
     if (status == 's') {
         toast.success(message, {
-            position: "bottom-right",
+            position: center ? "bottom-left": "bottom-right",
             autoClose: 1300,
             hideProgressBar: false,
             closeOnClick: true,

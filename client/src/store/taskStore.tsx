@@ -3,6 +3,7 @@ import { create } from 'zustand'
 
 
 export interface Tag {
+    id:string
     name: string
 }
 
@@ -12,7 +13,7 @@ export interface Task {
     description: string,
     deadline: Date,
     status: string,
-    tag: Tag[]
+    tags: Tag[]
 }
 
 interface TaskInterface {

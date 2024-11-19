@@ -45,7 +45,7 @@ export async function getTasks(req: Request, res: Response, next: NewableFunctio
 export async function createTask(req: Request, res: Response, next: NewableFunction) {
     const { authorization } = req.headers
     const date = new Date()
-    const { description, title, deadline } = req.body
+    const { description, title, deadline, tags } = req.body
     // id title description deadline status
     try {
         if (!description || !title || !deadline) throwError(statusCode.badRequest, "parametros invalidos")
@@ -57,8 +57,12 @@ export async function createTask(req: Request, res: Response, next: NewableFunct
                     description: description,
                     title: title,
                     deadline: deadline || date,
-                    userId: userAuth.id
-                }
+                    userId: userAuth.id,
+                    tags:{
+                        connect:tags
+                    }
+                },
+                
             })
             response(statusCode.creado, newTask)
         }
