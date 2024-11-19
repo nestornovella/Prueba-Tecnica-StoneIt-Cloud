@@ -12,11 +12,13 @@ const nameOfStates = {
     proceso: 'progreso',
     pendiente: 'pendiente',
     completada: 'completada',
-    pendientesProceso: 'standard'
+    pendientesProceso: 'all'
 }
 
 function Filtertask() {
     const [selected, setSelected] = useState(nameOfStates.pendientesProceso)
+    const [tagSelected, setTagSelected] = useState<string | null>(null)
+
     const { token } = useUserStore()
     const { filterTasks, gettasks } = useTaskStore()
     const { getTags, tags } = useTaskCreateHook()
@@ -24,17 +26,17 @@ function Filtertask() {
     function handleButton(e: React.MouseEvent<HTMLButtonElement>) {
         const target = e.target as HTMLButtonElement;
         setSelected(target.name)
-        if (target.name == 'standard') {
+        if (target.name == 'all') {
             gettasks(token)
+            setTagSelected(null)
         } else {
-            filterTasks(target.name, null, token)
+            filterTasks(target.name, tagSelected || null, token)
         }
     }
 
     function handleTag(e: React.MouseEvent<HTMLButtonElement>) {
-        const target = e.target as HTMLButtonElement;
-
-        filterTasks(null, e.currentTarget.name, token)
+        setTagSelected(e.currentTarget.name)
+        filterTasks(selected, e.currentTarget.name, token)
 
     }
 
@@ -62,7 +64,7 @@ function Filtertask() {
             <Box display={"flex"} paddingY={2} justifyContent={'start'} gap={3}>
                 {
                     tags?.map((t: Tag) => {
-                        return <Button onClick={handleTag} name={t.name} variant={!selected.includes('') ? 'contained' : 'outlined'} color="secondary">
+                        return <Button onClick={handleTag} name={t.name} variant={tagSelected?.toString().includes(t.name) ? 'contained' : 'outlined'} color="secondary">
                             {t.name}
                         </Button>
                     })
