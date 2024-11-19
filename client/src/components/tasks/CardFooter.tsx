@@ -4,6 +4,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useTaskStore } from "../../store/taskStore";
 import { MouseEventButton } from "../../interfaces/eventInterfaces";
 import { useUserStore } from "../../store/userStore";
+import { getToasty } from "../../helpers/totifyNotify";
 
 
 
@@ -16,6 +17,7 @@ function CardFooter({id}:{id:string}) {
     async function  handleDelete(e:MouseEventButton){
         e.preventDefault()
         await deleteTask(id, token)
+        getToasty('Tarea eliminada', 'e')
         await gettasks(token)
     }
 
