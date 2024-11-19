@@ -51,7 +51,7 @@ describe('Auth Controller', () => {
 
       await generateToken(mockRequest as Request, mockResponse as Response, mockNext);
 
-      expect(throwError).toHaveBeenCalledWith(statusCode.badRequest, 'invalid params');
+      expect(throwError).toHaveBeenCalledWith(statusCode.badRequest, 'Se requiere usuario y contraseña');
     });
 
     it('should throw an error for non-existent user', async () => {
@@ -60,7 +60,7 @@ describe('Auth Controller', () => {
 
       await generateToken(mockRequest as Request, mockResponse as Response, mockNext);
 
-      expect(throwError).toHaveBeenCalledWith(statusCode.noEncontrado, 'usuario invalido');
+      expect(throwError).toHaveBeenCalledWith(statusCode.noEncontrado, 'usuario incorrecto');
     });
 
     it('should throw an error for invalid password', async () => {
@@ -71,7 +71,7 @@ describe('Auth Controller', () => {
 
       await generateToken(mockRequest as Request, mockResponse as Response, mockNext);
 
-      expect(throwError).toHaveBeenCalledWith(statusCode.noAutorizado, 'contraseña invalida');
+      expect(throwError).toHaveBeenCalledWith(statusCode.noAutorizado, 'contraseña incorrecta');
     });
 
     it('should call next with any unexpected error', async () => {
@@ -92,7 +92,7 @@ describe('Auth Controller', () => {
 
       await authUser(mockRequest as Request, mockResponse as Response, mockNext);
 
-      expect(response).toHaveBeenCalledWith(statusCode.aceptado, { id: '1', username: 'testuser', email: 'testemail' });
+      expect(response).toHaveBeenCalledWith(statusCode.aceptado, { id: '1', username: 'testuser' });
     });
 
     it('should handle expired token', async () => {
