@@ -9,7 +9,6 @@ import { MouseEventButton } from "../../../interfaces/eventInterfaces";
 
 function CreateTask() {
     const { handleinput, input, submit, getTags, handleTag, tags, deleteTag } = useTaskCreateHook()
-    console.log(input)
 
     function handleDelete (e:MouseEventButton){
         const id = e.currentTarget.id 

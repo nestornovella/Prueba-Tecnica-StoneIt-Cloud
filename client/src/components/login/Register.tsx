@@ -18,7 +18,6 @@ function Register({ handleToggle, close }: Props) {
   async function handleSubmit(e: React.MouseEvent<HTMLButtonElement>) {
 
     const response = await submit(e)
-    console.log(response)
     if (response.data.status < 300) {
       setLocalStorageToken(response.data.data.token, response.data.data.user)
       await authUser(response.data.data.token)

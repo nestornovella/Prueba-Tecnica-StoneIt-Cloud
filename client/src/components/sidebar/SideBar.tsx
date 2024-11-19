@@ -7,7 +7,6 @@ import CreateTask from "./createTask/CreateTaskComponent";
 import Filtertask from "./FilterTask";
 import HandleUtilities from "./handleUtilities";
 import RenderImages from "./configuration/RenderImages";
-import { Height } from "@mui/icons-material";
 //'#080808'
 
 function SideBar() {
