@@ -20,7 +20,7 @@ const WallpaperImage = ({ src }:ClickableImageProps) => {
                 <CardMedia
                     component="img"
                     sx={{
-                        width: {md:'160px', xs:'130px'},
+                        width: {xs:'100%'},
                         height: {md:'120px', xs:'100px'},
                         borderRadius: 2,
                     }}
