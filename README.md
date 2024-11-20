@@ -76,22 +76,9 @@ La aplicación permite a los usuarios registrarse, iniciar sesión y gestionar s
 - cd api
 - npm install
 
-## Configurar Prisma
-
-- **iniciaizar**
-npx prisma init
-
-- **crear el cliente de prisma**
-npx prisma generate
-
-- **Crear y aplicar una nueva migración**
-npx prisma migrate dev --name nombre_migracion
-
-
-## Configurar SQlite  
-
-- **compilar el proyecto**
-npm run build
+## compilador  
+- **compilar el proyecto (necesatio para que funcione)**
+npm run build:dev
 
 # establecer la variable de entorno DATABASE_URL en tu archivo .env.
 
