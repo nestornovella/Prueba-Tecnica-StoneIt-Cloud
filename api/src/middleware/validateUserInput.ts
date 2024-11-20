@@ -14,6 +14,5 @@ export function validateUserInput(req: Request, res: Response, next: NextFunctio
   if (!passwordRegex.test(password)) {
     return throwError(statusCode.badRequest, 'La contraseña debe tener al menos 7 caracteres, una mayúscula y un carácter especial');
   }
-
   next();
 }

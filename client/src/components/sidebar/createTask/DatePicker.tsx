@@ -13,6 +13,10 @@ const SimpleDatePicker = ({ handleInput }:Props) => {
     handleInput(e);
   }
 
+  function resetToToday() {
+    setDate(today);
+  }
+
   return (
     <div style={{ display: "block", height: "81px" }}>
       <label htmlFor="deadline" style={{ display: "flex" }}>
@@ -24,6 +28,7 @@ const SimpleDatePicker = ({ handleInput }:Props) => {
         name="deadline"
         value={date}
         onChange={testHandle}
+        onFocus={resetToToday}
         min={today}
         style={{
           padding: "13px",

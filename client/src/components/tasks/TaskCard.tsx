@@ -76,7 +76,7 @@ function TaskCard({ title, description, deadline, id, status, tags }: TaskProps)
                 >
                 </CardMedia>
                 <CardSelect id={id} status={status} />
-                <CardContent sx={{ maxHeight: { xs: 140 }, overflow: 'hidden' }}>
+                <CardContent sx={{ maxHeight: { xs: 120 }, overflow: 'scroll' }}>
                     <Typography  fontFamily={'Sour Gummy'}fontSize={17} gutterBottom sx={{color:'#fff'}} variant="button" component="div">
                         {title}
                     </Typography>
