@@ -11,7 +11,7 @@ interface Props {
 function Login({ handleRegister, close }: Props) {
   const { handleInput, input, submit } = useLoginHook()
   const [error, setError] = useState(null)
-
+  console.log(error)
   async function handleSubmit(e: React.MouseEvent<HTMLButtonElement>) {
     const response = await submit(e)
     if (response.data.status < 300) {

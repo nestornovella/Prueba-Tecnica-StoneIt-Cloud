@@ -12,6 +12,7 @@ interface Props {
 
 function Register({ handleToggle, close }: Props) {
   const [error, setError] = useState(null)
+  console.log(error)
   const { authUser, setLocalStorageToken } = useUserStore()
   const { handleInput, input, submit } = userRegisterHook()
 
