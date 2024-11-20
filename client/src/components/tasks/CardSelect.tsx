@@ -40,7 +40,7 @@ function CardSelect({id, status}:Props) {
                 label="Age"
                 sx={{
                     
-                    color: selected == 'pendiente' ? '#f0de14' : selected == 'completada' ? '#0d950d' : '#ef9207' ,
+                    color: selected == 'pendiente' ? '#14f073' : selected == 'completada' ? '#d510cc' : '#076fef' ,
                     '& .MuiOutlinedInput-notchedOutline': {
                         borderColor: 'black',
                         border: 2
@@ -49,9 +49,8 @@ function CardSelect({id, status}:Props) {
                         borderColor: 'white',
                     },
                     '& .MuiSelect-icon': {
-                        color:selected == 'pendiente' ? '#f0de14' : selected == 'completada' ? '#0d950d' : '#ef9207',
+                        color:selected == 'pendiente' ? '#14f073' : selected == 'completada' ? '#d510cc' : '#076fef',
                     },
-                    backgroundColor:selected == 'pendiente' ? '#968b085f' : selected == 'completada' ? '#113c117a' : '#ef92076e',
                     height: '30px'
                 }}
             >
