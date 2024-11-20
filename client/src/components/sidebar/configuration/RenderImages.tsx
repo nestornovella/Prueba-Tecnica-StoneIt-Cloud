@@ -11,8 +11,12 @@ function RenderImages() {
         'https://i.redd.it/4k-wallpaper-steampunk-train-station-v0-77dlz0e5msda1.png?width=3840&format=png&auto=webp&s=d3a1bcca6ee134966924ad05952d322b2308ab28',
         'https://images.pexels.com/photos/1619317/pexels-photo-1619317.jpeg?cs=srgb&dl=pexels-souvenirpixels-1619317.jpg&fm=jpg',
         'https://wallpapers.com/images/hd/aquatic-corals-and-sponges-lde5sor5tp69rt7i.jpg',
+        'https://www.designbcn.es/fileuploads/noticias/oficinas-modernas-20241.jpg',
+        'https://www.blogdelfotografo.com/wp-content/uploads/2020/09/bahram-bayat-oZCvXdYU6m4-unsplash.webp',
+        'https://wallpapers.com/images/hd/black-and-white-scenery-with-the-moon-zm19605amj4kd8lh.jpg',
+        'https://www.wallpaperuse.com/wallp/44-444092_m.jpg',
         'https://wallpapers-clan.com/wp-content/uploads/2023/12/cosmonaut-in-open-space-art-desktop-wallpaper-scaled.jpg',
-        'https://www.designbcn.es/fileuploads/noticias/oficinas-modernas-20241.jpg'
+        'https://www.muyinteresante.com/wp-content/uploads/sites/5/2023/05/09/645a08d9d7d6b.jpeg'
 
 
     ]

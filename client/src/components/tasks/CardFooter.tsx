@@ -1,5 +1,4 @@
-import { Box, Button, CardActions } from "@mui/material";
-import VisibilityIcon from '@mui/icons-material/Visibility';
+import { Button, CardActions } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useTaskStore } from "../../store/taskStore";
 import { MouseEventButton } from "../../interfaces/eventInterfaces";
