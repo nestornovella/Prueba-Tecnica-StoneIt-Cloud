@@ -42,6 +42,9 @@ La aplicación permite a los usuarios registrarse, iniciar sesión y gestionar s
   ![Interfaz de Tareas](./client/public/2.jpeg)
   ![Interfaz de Tareas](./client/public/3.jpeg)
   ![Interfaz de Tareas](./client/public/4.jpeg)
+  ![Interfaz de Tareas](./client/public/5.jpeg)
+  ![Interfaz de Tareas](./client/public/6.jpeg)
+  ![Interfaz de Tareas](./client/public/7.jpeg)
 
 ## Tecnologías Utilizadas
 
