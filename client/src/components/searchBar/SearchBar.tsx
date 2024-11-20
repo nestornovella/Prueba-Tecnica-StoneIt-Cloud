@@ -25,7 +25,7 @@ function SearchBar() {
   };
 
   useEffect(()=>{
-    console.log(serchedTask)
+    serchedTask
   }, [serchedTask])
 
   return (

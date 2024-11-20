@@ -23,7 +23,7 @@ function RenderImages() {
     ]
     return (
         <Box padding={5} component={'div'}>
-            <Typography fontFamily={"monospace"} color="white">Filtrar por:</Typography>
+            <Typography fontFamily={"monospace"} color="white">Escoger fondo:</Typography>
             <Grid padding={4} container spacing={2} justifyContent="center">
 
                 {
