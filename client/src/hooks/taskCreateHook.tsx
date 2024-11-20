@@ -68,7 +68,6 @@ function useTaskCreateHook() {
             ...input,
             tags: input.tags.map(tg => ({id:tg.id}))
         }
-        console.log('->',parsedInput)
         const response = await axios.post(import.meta.env.VITE_TASK_URL, parsedInput, {
             headers: {
                 Authorization: token

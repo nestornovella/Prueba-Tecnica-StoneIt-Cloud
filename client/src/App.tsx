@@ -6,7 +6,6 @@ import SearchBar from "./components/searchBar/SearchBar";
 import SideBar from "./components/sidebar/SideBar";
 import SidebarButton from "./components/sidebar/SidebarButton";
 import { ToastContainer } from 'react-toastify';
-import { Box } from '@mui/material';
 import { useConfigStore } from './store/configStore';
 
 function App() {

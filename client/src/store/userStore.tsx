@@ -38,11 +38,8 @@ export const useUserStore = create<UserInterface>()(
         try {
             const token = await axios.post(URLS.authPath, user)
             set(()=> ({token: token.data.message, loading: false}))
-            console.log(token)
             return token
         } catch (error:any) {
-            //set((store)=> ({errors: {...store.errors, [error.response.data.status]:error.response.data.message}}))
-            console.log(error)
             return error
         }
     }, 

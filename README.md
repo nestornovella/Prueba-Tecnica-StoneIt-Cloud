@@ -6,7 +6,7 @@
 
 ## Descripción
 
-La aplicación permite a los usuarios registrarse, iniciar sesión y gestionar sus tareas personales de forma eficiente. Los usuarios pueden crear tareas con diferentes estados y etiquetas, eliminarlas y filtrar la lista de tareas según sus necesidades.
+La aplicación permite a los usuarios registrarse, iniciar sesión y gestionar sus tareas personales de forma eficiente. Los usuarios pueden crear tareas con diferentes estados y etiquetas, eliminarlas y filtrar la lista de tareas según sus necesidades. Tambien cuenta con un sistema de correo electronico el cual consta de un email que se envia a los usuarios con tareas pendientes o en progreso póximas a finalizar. 
 
 ## Tabla de Contenidos
 
@@ -19,6 +19,7 @@ La aplicación permite a los usuarios registrarse, iniciar sesión y gestionar s
 - [Uso](#uso)
 - [Contribución](#contribución)
 - [Licencia](#licencia)
+- [Anotaciones](#anotaciones)
 
 ## Características
 
@@ -41,6 +42,9 @@ La aplicación permite a los usuarios registrarse, iniciar sesión y gestionar s
   ![Interfaz de Tareas](./client/public/2.jpeg)
   ![Interfaz de Tareas](./client/public/3.jpeg)
   ![Interfaz de Tareas](./client/public/4.jpeg)
+  ![Interfaz de Tareas](./client/public/5.jpeg)
+  ![Interfaz de Tareas](./client/public/6.jpeg)
+  ![Interfaz de Tareas](./client/public/7.jpeg)
 
 ## Tecnologías Utilizadas
 
@@ -94,6 +98,8 @@ npm run build
 - **api**
 - DATABASE_URL="file:../../db/database.db"
 - SECRET_KEY_JWT='dscwksa23sdaw'
+- EMAIL_USER= "configurar email de usuario para poder usar nodemailer"
+- EMAIL_PASS= "crear contraseña de api de email de usuario"
 
 - **client**
 - VITE_AUTH_URL= http://localhost:3001/auth/
@@ -124,3 +130,8 @@ Abre un Pull Request.
 
 ## Licencia
 Este proyecto está bajo la Licencia MIT. Consulta el archivo LICENSE para más información.
+
+
+## Anotaciones
+
+el sistema de correos electronicos queda instalado para cuando quiera ponerse en uso, solo se debe agregar el email del usuario + la contraseña de api (revisar variables de entorno) para ponerlo en funcionamiento.

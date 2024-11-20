@@ -1,5 +1,5 @@
 
-import { Box, Grid, Paper } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import TaskCard from './TaskCard';
 import { useTaskStore } from '../../store/taskStore';
 import { useEffect } from 'react';

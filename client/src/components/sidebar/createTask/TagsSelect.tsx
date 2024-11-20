@@ -16,7 +16,6 @@ interface Props{
 function TagSelect({getTags, tags, handleTag, input}:Props) {
     const { isOpen, toogle } = useToogle()
     useEffect(() => {
-        console.log(tags)
         getTags()
     }, [])
 
@@ -26,7 +25,6 @@ function TagSelect({getTags, tags, handleTag, input}:Props) {
         const tagName = e.currentTarget.textContent || ''
         if (!tagExists) {
             handleTag(tagId, tagName);
-            console.log(input)
             
         }
     }
