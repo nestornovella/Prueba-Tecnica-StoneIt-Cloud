@@ -89,7 +89,7 @@ function CreateTask() {
                     <Box component={'div'} sx={{display:'flex', gap:2, flexWrap:'wrap'}}>
                         {
                             input.tags && input.tags.map(t => {
-                                return <Button onClick={handleDelete} id={t.id} variant="contained" color="error" >{t.name + " 🗑️"}</Button>
+                                return <Button key={t.id} onClick={handleDelete} id={t.id} variant="contained" color="error" >{t.name + " 🗑️"}</Button>
                             })
                         }
                     </Box>
