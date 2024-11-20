@@ -1,7 +1,8 @@
 # Aplicación de Gestión de Tareas
 
 ¡Bienvenido al desafío de desarrollo de una aplicación web de gestión de tareas! Este proyecto fue creado como prueba técnica para evaluar habilidades en desarrollo Fullstack. 
-
+Aqui esta la version deploy
+https://lucid-reverence-production.up.railway.app/
 ![Gestión de Tareas](./client/public/1.jpeg)
 
 ## Descripción
