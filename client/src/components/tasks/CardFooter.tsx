@@ -29,7 +29,7 @@ function CardFooter({id}:{id:string}) {
                     bottom: 0,
                     left: 0,
                     right: 0,
-                    display: 'none', // Ocultar por defecto
+                    display: 'none', 
                     justifyContent: 'center',
                     backgroundColor: 'rgba(0, 0, 0,1)',
                     padding: '8px',

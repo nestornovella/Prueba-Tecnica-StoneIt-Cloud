@@ -1,6 +1,5 @@
 import { Box, Grid, Typography } from '@mui/material';
-import WallpaperImage from './WallpaperImage'; // Asegúrate de importar tu componente de imagen
-import { useConfigStore } from '../../../store/configStore';
+import WallpaperImage from './WallpaperImage'; 
 
 
 function RenderImages() {

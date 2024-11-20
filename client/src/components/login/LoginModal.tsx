@@ -1,4 +1,4 @@
-import { Box, Fade, Modal, Typography, Backdrop, Button, colors } from "@mui/material";
+import { Box, Fade, Modal, Backdrop } from "@mui/material";
 import { useState } from "react";
 import Login from "./Login";
 import Register from "./Register";

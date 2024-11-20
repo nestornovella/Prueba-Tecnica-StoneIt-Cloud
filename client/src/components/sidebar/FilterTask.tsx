@@ -2,10 +2,7 @@ import { Box, Button, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useUserStore } from "../../store/userStore";
 import { Tag, useTaskStore } from "../../store/taskStore";
-import useTagHook from "../../hooks/tagHook";
 import useTaskCreateHook from "../../hooks/taskCreateHook";
-
-
 
 
 const nameOfStates = {

@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Grid, TextField, InputAdornment, IconButton } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import SendIcon from '@mui/icons-material/Send';
@@ -57,7 +57,7 @@ function SearchBar() {
                 <IconButton
                   onClick={handleClear}
                   edge="end"
-                  sx={{ marginRight: 1 }} // Espacio entre botones
+                  sx={{ marginRight: 1 }} 
                 >
                   <ClearIcon style={{ color: 'white' }} />
                 </IconButton>
