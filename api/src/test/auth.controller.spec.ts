@@ -1,20 +1,20 @@
 import 'jest';
 import { Request, Response, NextFunction } from 'express';
-import { generateToken, authUser } from '../src/controllers/auth.controller';
-import { prisma } from '../src/helpers/prismaSingelton';
-import { response, throwError } from '../src/helpers/responseHandlers';
-import { statusCode } from '../src/helpers/statusCode';
+import { generateToken, authUser } from '../controllers/auth.controller';
+import { prisma } from '../helpers/prismaSingelton';
+import { response, throwError } from '../helpers/responseHandlers';
+import { statusCode } from '../helpers/statusCode';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-jest.mock('../src/helpers/prismaSingelton', () => ({
+jest.mock('../helpers/prismaSingelton', () => ({
   prisma: {
     user: {
       findUnique: jest.fn(),
     },
   },
 }));
-jest.mock('../src/helpers/responseHandlers');
+jest.mock('../helpers/responseHandlers');
 jest.mock('bcrypt');
 jest.mock('jsonwebtoken');
 
