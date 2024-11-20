@@ -9,7 +9,7 @@ import { useUserStore } from '../../store/userStore';
 
 
 function TasksRender() {
-    const { token, authUser } = useUserStore()
+    const { token, authUser, user } = useUserStore()
     const { gettasks, tasks, serchedTask } = useTaskStore()
 
     useEffect(() => {

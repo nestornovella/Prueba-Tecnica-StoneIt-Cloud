@@ -98,7 +98,7 @@ function TaskCard({ title, description, deadline, id, status, tags }: TaskProps)
                     <Box component={'div'} sx={{display:'flex', position:'absolute', top:10}}>
                         {
                             tags?.map((tg:Tag) =>{
-                                return <Box marginLeft={1} justifyContent={'center'} alignItems={'center'} sx={{backgroundColor:'#0202CE', width:"28px", height:"28px", borderRadius:10, textAlign:'center', display:'flex' }}>
+                                return <Box key={tg.id} marginLeft={1} justifyContent={'center'} alignItems={'center'} sx={{backgroundColor:'#0202CE', width:"28px", height:"28px", borderRadius:10, textAlign:'center', display:'flex' }}>
                                     <Typography fontSize={13} variant="button" component={'div'} color="white">{tg.name.split('').slice(0, 2).join('')}</Typography>
                                 </Box>
                             })
