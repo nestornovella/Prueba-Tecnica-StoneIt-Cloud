@@ -43,7 +43,7 @@ function SideBar() {
                     position: "fixed",
                     top: 0,
                     right: 0,
-                    zIndex: 1000
+                    zIndex: 100
                 }}>
                 <Box  style={{ backgroundColor: '#080808', width: '100%' }}>
                     <IconButton onClick={handleOpen} aria-label="" sx={{ backgroundColor: 'black' }}  >
